@@ -1,0 +1,20 @@
+{
+  "name": "token-list",
+  "version": "1.0.0",
+  "description": "Token list for 0xNext/swapper",
+  "homepage": "https://github.com/ZeroXnext/token-list#readme",
+  "bugs": {
+    "url": "https://github.com/ZeroXnext/token-list/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZeroXnext/token-list.git"
+  },
+  "license": "MIT",
+  "author": "igdev",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
