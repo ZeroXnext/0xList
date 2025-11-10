@@ -25,6 +25,8 @@ dist
 # Turbo
 .turbo
 
+.rollup.cache
+
 *.tsbuildinfo
 
 diagrams
