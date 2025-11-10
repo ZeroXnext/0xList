@@ -1,4 +1,7 @@
 {
   "name": "@token-list-builder/cli",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "yargs": "^18.0.0"
+  }
 }
