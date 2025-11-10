@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://0xnext.org/tokenlist-builder/packages/core/schemas/tokenlist-rules.schema.json",
+  "title": "Token List Rules",
+  "description": "Rules for token lists, structural validation, and allowed/disallowed tokens/chains",
+  "type": "object",
+  "properties": {
+    "allowedChains": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Array of chain names or IDs that are allowed"
+    },
+    "disallowedChains": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Array of chain names or IDs that are explicitly disallowed"
+    },
+    "allowedTokens": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+      "description": "Optional whitelist of token addresses"
+    },
+    "disallowedTokens": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+      "description": "Optional blacklist of token addresses"
+    },
+    "minTokenLiquidityScore": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Minimum liquidity score required for a token to be included"
+    },
+    "minTokenAge": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Minimum token age in seconds"
+    },
+    "validNetworkTypes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Valid network types for the src directory, e.g., ['mainnet','testnet','layer2']"
+    },
+    "fileNamePattern": {
+      "type": "string",
+      "description": "Regex pattern to validate list file names"
+    }
+  },
+  "additionalProperties": false
+}
