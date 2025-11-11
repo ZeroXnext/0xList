@@ -495,6 +495,7 @@ __metadata:
     "@types/node": "npm:^24.10.0"
     "@types/yargs": "npm:^17.0.34"
     ajv: "npm:^8.17.1"
+    ajv-formats: "npm:^3.0.1"
     tsx: "npm:^4.20.6"
     yargs: "npm:^18.0.0"
   languageName: unknown
@@ -576,7 +577,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.17.1":
+"ajv-formats@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "ajv-formats@npm:3.0.1"
+  dependencies:
+    ajv: "npm:^8.0.0"
+  peerDependencies:
+    ajv: ^8.0.0
+  peerDependenciesMeta:
+    ajv:
+      optional: true
+  checksum: 10c0/168d6bca1ea9f163b41c8147bae537e67bd963357a5488a1eaf3abe8baa8eec806d4e45f15b10767e6020679315c7e1e5e6803088dfb84efa2b4e9353b83dd0a
+  languageName: node
+  linkType: hard
+
+"ajv@npm:^8.0.0, ajv@npm:^8.17.1":
   version: 8.17.1
   resolution: "ajv@npm:8.17.1"
   dependencies:
