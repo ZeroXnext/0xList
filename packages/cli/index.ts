@@ -1,18 +1,32 @@
 #!/usr/bin/env node
 import yargs, {Argv} from 'yargs';
 import {hideBin} from 'yargs/helpers';
-import {CHAINS_MAPPING} from './constants';
+import findSources from './scripts/find-sources';
+import classify from './scripts/classify';
+import {DEFAULT_NETWORK_TYPES, DEFAULT_SUPPORTED_CHAINS, LIST_SOURCES} from './constants';
 
-const chains = Object.values(CHAINS_MAPPING);
+const allSources = Object.keys(LIST_SOURCES);
 yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv: Argv) => {
-  return argv.option("chains", {
+  return argv.option("verbose", {type: "boolean", alias: "v", default: false}).option("sources", {
     type: "array",
-    description: "The chains to generate from",
+    description: "The default sources to generate from.",
+    default: allSources,
+    choices: allSources
+  }).option("chains", {
+    type: "array",
+    description: "The chains to filter",
     alias: "c",
-    choices: ["ethereum", "solana"]
-  }).option("includeTestnet", {type: "boolean", default: true, description: "Include testnet networks or not"});
-}, (args) => {
-  const {chains, includeTestnet} = args;
-
-
+    default: DEFAULT_SUPPORTED_CHAINS,
+    choices: DEFAULT_SUPPORTED_CHAINS
+  }).option("allowedNetworkTypes", {
+    type: "array",
+    alias: "ant",
+    default: DEFAULT_NETWORK_TYPES,
+    choices: DEFAULT_NETWORK_TYPES,
+    description: "Allowed network type"
+  });
+}, async (args) => {
+  const {chains, allowedNetworkTypes, sources, verbose} = args;
+  const lists = await findSources(sources);
+  const classified = classify(lists, chains, allowedNetworkTypes, verbose);
 }).help('help').strictCommands().parse();
