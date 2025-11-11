@@ -3,7 +3,6 @@ import {TokenList} from "@tokenlist-builder/core";
 export function createDefaultList(chainName: string): TokenList {
   return {
     name: "Default token list",
-    tokens: [],
     logoURI: "",
     tags: {},
     version: {
@@ -13,5 +12,6 @@ export function createDefaultList(chainName: string): TokenList {
     },
     keywords: [],
     timestamp: new Date().toISOString(),
+    tokens: [],
   };
 }
