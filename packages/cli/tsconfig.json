@@ -6,7 +6,7 @@
     "target": "ES2023",
     "declarationDir": "dist",
     "composite": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node"
   },
   "exclude": [
     "node_modules"
