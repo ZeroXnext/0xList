@@ -9,7 +9,8 @@
     "cli:add": "yarn workspace @tokenlist-builder/cli add",
     "core:rm": "yarn workspace @tokenlist-builder/core remove",
     "cli:rm": "yarn workspace @tokenlist-builder/cli remove",
-    "build": "turbo build"
+    "build": "turbo build",
+    "cli:dev": "yarn workspace @tokenlist-builder/cli dev"
   },
   "devDependencies": {
     "turbo": "^2.6.0"
