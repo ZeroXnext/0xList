@@ -1,8 +1,21 @@
 {
   "name": "@tokenlist-builder/cli",
   "private": true,
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx index.ts",
+    "dev:watch": "tsx watch index.ts"
+  },
   "dependencies": {
+    "@tokenlist-builder/core": "workspace:*",
     "ajv": "^8.17.1",
     "yargs": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/yargs": "^17.0.34",
+    "tsx": "^4.20.6"
   }
 }
