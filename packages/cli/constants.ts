@@ -24,7 +24,8 @@ export const CHAINS_MAPPING: Record<number, Chain> = {
 
 export const LIST_SOURCES: Record<string, string> = {
   "uniswap": "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json",
-  "aawave": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokenlist.aave.eth.link"
+  "aawave": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokenlist.aave.eth.link",
+  "1inch": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link",
 };
 
 export const DEFAULT_NETWORK_TYPES = ["testnet", "mainnet"]
