@@ -12,10 +12,7 @@
     "node_modules"
   ],
   "include": [
-    "scripts/*",
-    "index.ts",
-    "constants.ts",
-    "types.ts",
-    "utils.ts"
+    "scripts/*.ts",
+    "*.ts"
   ]
 }
