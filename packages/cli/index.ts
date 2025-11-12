@@ -3,17 +3,29 @@ import yargs from 'yargs';
 import {hideBin} from 'yargs/helpers';
 import findSources from './scripts/find-sources';
 import classify from './scripts/classify';
-import {DEFAULT_NETWORK_TYPES, DEFAULT_SUPPORTED_CHAINS, DEFAULT_TOKEN_LIST_NAME, LIST_SOURCES} from './constants';
+import {
+  DEFAULT_LIST_VERSION,
+  DEFAULT_NETWORK_TYPES,
+  DEFAULT_SUPPORTED_CHAINS,
+  DEFAULT_TOKEN_LIST_NAME,
+  LIST_SOURCES
+} from './constants';
 import output from './scripts/output';
 
 const allSources = Object.keys(LIST_SOURCES);
 yargs(hideBin(process.argv))
     .option("defaultListName", {
-  type: "string",
-  default: DEFAULT_TOKEN_LIST_NAME,
-  description: "The default token list name, used when name token list name is invalid",
-  alias: "dl"
-}).command("generate", "Generate token list", (argv) => {
+      type: "string",
+      default: DEFAULT_TOKEN_LIST_NAME,
+      description: "The default token list name, used when name token list name is invalid",
+      alias: "dl"
+    })
+    .option("defaultListVersion", {
+      type: "array",
+      default: [DEFAULT_LIST_VERSION.major, DEFAULT_LIST_VERSION.patch, DEFAULT_LIST_VERSION.minor],
+      description: "The default list version",
+      alias: "dv"
+    }).command("generate", "Generate token list", (argv) => {
   return argv.option("verbose", {type: "boolean", alias: "v", default: false})
       .option("sources", {
         type: "array",
@@ -42,8 +54,20 @@ yargs(hideBin(process.argv))
         default: "dist",
       });
 }, async (args) => {
-  const {chains, allowedNetworkTypes, sources, verbose, output: outputDir, defaultListName} = args;
-  const lists = await findSources(sources, defaultListName);
+  const {
+    chains,
+    allowedNetworkTypes,
+    sources,
+    verbose,
+    output: outputDir,
+    defaultListName,
+    defaultListVersion: [major, patch, minor]
+  } = args;
+  const lists = await findSources(sources, defaultListName, {
+    major: parseInt(major.toString()),
+    patch: parseInt(patch.toString()),
+    minor: parseInt(minor.toString())
+  });
   const classified = classify(lists, chains, allowedNetworkTypes, verbose);
   output(outputDir, classified);
 }).help('help').strictCommands().parse();
