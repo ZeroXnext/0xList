@@ -1,13 +1,19 @@
 #!/usr/bin/env node
-import yargs, {Argv} from 'yargs';
+import yargs from 'yargs';
 import {hideBin} from 'yargs/helpers';
 import findSources from './scripts/find-sources';
 import classify from './scripts/classify';
-import {DEFAULT_NETWORK_TYPES, DEFAULT_SUPPORTED_CHAINS, LIST_SOURCES} from './constants';
+import {DEFAULT_NETWORK_TYPES, DEFAULT_SUPPORTED_CHAINS, DEFAULT_TOKEN_LIST_NAME, LIST_SOURCES} from './constants';
 import output from './scripts/output';
 
 const allSources = Object.keys(LIST_SOURCES);
-yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv: Argv) => {
+yargs(hideBin(process.argv))
+    .option("defaultListName", {
+  type: "string",
+  default: DEFAULT_TOKEN_LIST_NAME,
+  description: "The default token list name, used when name token list name is invalid",
+  alias: "dl"
+}).command("generate", "Generate token list", (argv) => {
   return argv.option("verbose", {type: "boolean", alias: "v", default: false})
       .option("sources", {
         type: "array",
@@ -36,8 +42,8 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv: A
         default: "dist",
       });
 }, async (args) => {
-  const {chains, allowedNetworkTypes, sources, verbose, output: outputDir} = args;
-  const lists = await findSources(sources);
+  const {chains, allowedNetworkTypes, sources, verbose, output: outputDir, defaultListName} = args;
+  const lists = await findSources(sources, defaultListName);
   const classified = classify(lists, chains, allowedNetworkTypes, verbose);
   output(outputDir, classified);
 }).help('help').strictCommands().parse();
