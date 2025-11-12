@@ -1,5 +1,5 @@
 import {TokenList, tokenListSchema} from "@tokenlist-builder/core";
-import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME, LIST_SOURCES} from '../constants';
+import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '../constants';
 import addFormats from 'ajv-formats';
 import Ajv from 'ajv';
 import {MutableTokenList} from '../types';
@@ -11,8 +11,8 @@ addFormats(ajv);
 
 
 async function main(sources: string[], defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, defaultVersion = DEFAULT_LIST_VERSION): Promise<TokenList[]> {
-  return Promise.all(sources.flatMap<Promise<TokenList[]>>(async (item) => {
-    const res = await fetch(LIST_SOURCES[item]);
+  return Promise.all(sources.flatMap<Promise<TokenList[]>>(async (src) => {
+    const res = await fetch(src);
     let data = await res.json();
 
     const maybePartitionedLists = (data as TokenList).tokens.length > tokenListSchema.properties.tokens.maxItems ? partitionTokenList(data, defaultVersion, undefined, defaultTokenListName) : [data as MutableTokenList];

@@ -22,22 +22,22 @@ export const CHAINS_MAPPING: Record<number, Chain> = {
   11155111: {name: "sepolia", type: "testnet"}
 };
 
-export const LIST_SOURCES: Record<string, string> = {
-  "uniswap": "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json",
-  "aawave": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokenlist.aave.eth.link",
-  "1inch": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link",
-};
+export const LIST_SOURCES = [
+  "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json",
+  "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokenlist.aave.eth.link",
+  "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link"
+];
 
-export const DEFAULT_NETWORK_TYPES = ["testnet", "mainnet"]
-export const DEFAULT_SUPPORTED_CHAINS = ["ethereum"]
+export const DEFAULT_NETWORK_TYPES = ["testnet", "mainnet"];
+export const DEFAULT_SUPPORTED_CHAINS = ["ethereum"];
 
 
 export const DEFAULT_LIST_VERSION = {
   major: 1,
   patch: 0,
   minor: 0,
-}
+};
 
 
-export const DEFAULT_TOKEN_LIST_NAME = "Token list"
-export const DEFAULT_LIST_LOGO_URI = ""
+export const DEFAULT_TOKEN_LIST_NAME = "Token list";
+export const DEFAULT_LIST_LOGO_URI = "";

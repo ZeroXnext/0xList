@@ -12,7 +12,6 @@ import {
 } from './constants';
 import output from './scripts/output';
 
-const allSources = Object.keys(LIST_SOURCES);
 yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) => {
   return argv.option("verbose", {type: "boolean", alias: "v", default: false})
       .option("defaultListName", {
@@ -31,8 +30,8 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) =
         type: "array",
         description: "The default sources to generate from.",
         alias: "s",
-        default: allSources,
-        choices: allSources
+        default: LIST_SOURCES,
+        choices: LIST_SOURCES
       })
       .option("chains", {
         type: "array",
