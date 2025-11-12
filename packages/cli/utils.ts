@@ -1,5 +1,5 @@
 import {TokenList, tokenListSchema} from "@tokenlist-builder/core";
-import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from './constants';
+import {DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from './constants';
 
 export function partitionArray<T>(array: T[], maxItems: number): T[][] {
   if (maxItems <= 0) throw new Error("maxItems must be greater than 0");
@@ -41,7 +41,7 @@ export function initializeTokenList({
                                       tokens
                                     }: Omit<TokenList, "version" | "timestamp"> = {
   name: DEFAULT_TOKEN_LIST_NAME,
-  logoURI: "",
+  logoURI: DEFAULT_LIST_LOGO_URI,
   tags: {},
   keywords: [],
   tokens: [],
