@@ -50,7 +50,7 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) =
       .option("output", {
         type: "string",
         alias: "o",
-        default: "dist",
+        default: "dist/src",
       });
 }, async (args) => {
   const {
@@ -67,7 +67,6 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) =
     patch: parseInt(patch.toString()),
     minor: parseInt(minor.toString())
   });
-
   const classified = classify(lists.flat(), chains, allowedNetworkTypes, verbose);
   output(outputDir, classified, true);
 }).help('help').strictCommands().parse();
