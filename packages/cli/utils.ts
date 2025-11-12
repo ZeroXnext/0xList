@@ -1,5 +1,5 @@
 import {TokenList, tokenListSchema} from "@tokenlist-builder/core";
-import {DEFAULT_LIST_VERSION} from './constants';
+import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from './constants';
 
 export function partitionArray<T>(array: T[], maxItems: number): T[][] {
   if (maxItems <= 0) throw new Error("maxItems must be greater than 0");
@@ -11,16 +11,21 @@ export function partitionArray<T>(array: T[], maxItems: number): T[][] {
   return result;
 }
 
-export function partitionTokenList(tokenList: Omit<TokenList, "version" | "timestamp">, version: TokenList['version'] = DEFAULT_LIST_VERSION, timestamp = new Date().toLocaleTimeString()): TokenList[] {
+export function partitionTokenList(tokenList: Omit<TokenList, "version" | "timestamp">,
+                                   version: TokenList['version'] = DEFAULT_LIST_VERSION,
+                                   timestamp = new Date().toLocaleTimeString(),
+                                   defaultTokenListName = DEFAULT_TOKEN_LIST_NAME): TokenList[] {
   // Copy metadata from the list and the partitioned tokens
   const tokens = partitionArray(tokenList.tokens, tokenListSchema.properties.tokens.maxItems);
   let tokenLists: TokenList[] = [];
+
   let i = 0;
   for (const _tokens of tokens) {
+    const name = `${tokenList.name}${i}`;
     i++;
     tokenLists.push(initializeTokenList({
       ...tokenList,
-      name: `${tokenList.name}${i}`, // use unique name because this will be the filename
+      name: name.length > tokenListSchema.properties.name.maxLength ? `${defaultTokenListName} ${i}` : name,
       tokens: _tokens
     }, version, timestamp));
   }
@@ -35,7 +40,7 @@ export function initializeTokenList({
                                       keywords,
                                       tokens
                                     }: Omit<TokenList, "version" | "timestamp"> = {
-  name: "Default token list",
+  name: DEFAULT_TOKEN_LIST_NAME,
   logoURI: "",
   tags: {},
   keywords: [],
