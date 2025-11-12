@@ -1,7 +1,7 @@
 import {TokenList} from "@tokenlist-builder/core";
 import {MappedTokenLists} from '../types';
 import {CHAINS_MAPPING} from '../constants';
-import {createDefaultList} from '../utils';
+import {initializeTokenList} from '../utils';
 
 function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], verbose: boolean): MappedTokenLists {
   const listMapping: MappedTokenLists = new Map();
@@ -34,7 +34,7 @@ function main(tokenLists: TokenList[], supportedChains: string[], supportedNetwo
       // Get or create the TokenList for this chain name
       let mappedChain = typeMap.get(name);
       if (!mappedChain) {
-        mappedChain = createDefaultList(name);
+        mappedChain = initializeTokenList(tokenList);
         typeMap.set(name, mappedChain);
       }
       if (verbose) {
