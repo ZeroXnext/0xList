@@ -1,5 +1,6 @@
 import {TokenList, tokenListSchema} from "@tokenlist-builder/core";
 import {DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from './constants';
+import {MutableTokenList} from './types';
 
 export function partitionArray<T>(array: T[], maxItems: number): T[][] {
   if (maxItems <= 0) throw new Error("maxItems must be greater than 0");
@@ -14,7 +15,7 @@ export function partitionArray<T>(array: T[], maxItems: number): T[][] {
 export function partitionTokenList(tokenList: Omit<TokenList, "version" | "timestamp">,
                                    version: TokenList['version'] = DEFAULT_LIST_VERSION,
                                    timestamp = new Date().toLocaleTimeString(),
-                                   defaultTokenListName = DEFAULT_TOKEN_LIST_NAME): TokenList[] {
+                                   defaultTokenListName = DEFAULT_TOKEN_LIST_NAME): MutableTokenList[] {
   // Copy metadata from the list and the partitioned tokens
   const tokens = partitionArray(tokenList.tokens, tokenListSchema.properties.tokens.maxItems);
   let tokenLists: TokenList[] = [];
