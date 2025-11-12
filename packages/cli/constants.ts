@@ -30,3 +30,10 @@ export const LIST_SOURCES: Record<string, string> = {
 
 export const DEFAULT_NETWORK_TYPES = ["testnet", "mainnet"]
 export const DEFAULT_SUPPORTED_CHAINS = ["ethereum"]
+
+
+export const DEFAULT_LIST_VERSION = {
+  major: 1,
+  patch: 0,
+  minor: 0,
+}
