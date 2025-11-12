@@ -13,20 +13,20 @@ import {
 import output from './scripts/output';
 
 const allSources = Object.keys(LIST_SOURCES);
-yargs(hideBin(process.argv))
-    .option("defaultListName", {
-      type: "string",
-      default: DEFAULT_TOKEN_LIST_NAME,
-      description: "The default token list name, used when name token list name is invalid",
-      alias: "dl"
-    })
-    .option("defaultListVersion", {
-      type: "array",
-      default: [DEFAULT_LIST_VERSION.major, DEFAULT_LIST_VERSION.patch, DEFAULT_LIST_VERSION.minor],
-      description: "The default list version",
-      alias: "dv"
-    }).command("generate", "Generate token list", (argv) => {
+yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) => {
   return argv.option("verbose", {type: "boolean", alias: "v", default: false})
+      .option("defaultListName", {
+        type: "string",
+        default: DEFAULT_TOKEN_LIST_NAME,
+        description: "The default token list name, used when name token list name is invalid",
+        alias: "dl"
+      })
+      .option("defaultListVersion", {
+        type: "array",
+        default: [DEFAULT_LIST_VERSION.major, DEFAULT_LIST_VERSION.patch, DEFAULT_LIST_VERSION.minor],
+        description: "The default list version",
+        alias: "dv"
+      })
       .option("sources", {
         type: "array",
         description: "The default sources to generate from.",
