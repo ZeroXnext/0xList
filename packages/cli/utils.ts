@@ -57,19 +57,3 @@ export function initializeTokenList({
     tokens,
   };
 }
-
-export function createDefaultList(chainName: string): TokenList {
-  return {
-    name: "Default token list",
-    logoURI: "",
-    tags: {},
-    version: {
-      major: 1,
-      patch: 0,
-      minor: 0,
-    },
-    keywords: [],
-    timestamp: new Date().toISOString(),
-    tokens: [],
-  };
-}
