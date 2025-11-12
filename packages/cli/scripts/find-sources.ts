@@ -13,8 +13,9 @@ async function main(sources: string[]) {
     const res = await fetch(LIST_SOURCES[item]);
     let data = await res.json();
     const result = validator.validate(tokenListSchema, data);
-    const errorsPath = validator.errors?.map(item => item.instancePath) ?? [];
-    if (errorsPath.includes('#/properties/tokens/maxItems') && errorsPath.length === 1) {
+    // Ignore tokens/maxItems, we should produce two separate lists in this case
+    const schemaPaths = validator.errors?.map(item => item.schemaPath) ?? [];
+    if (schemaPaths.includes('#/properties/tokens/maxItems') && schemaPaths.length === 1) {
       return data;
     }
     if (!result) {
