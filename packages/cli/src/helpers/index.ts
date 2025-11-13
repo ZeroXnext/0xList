@@ -1,8 +1,6 @@
 import {TokenList, tokenListSchema} from '@tokenlist-builder/core';
 import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '@constants';
 import {MutableTokenList} from '@types';
-import path from 'node:path';
-import * as fs from 'node:fs';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import classify from './classify';
@@ -11,20 +9,10 @@ import resolve from './resolve';
 import output from './output';
 import partition from './partition';
 import initializeTokenList from './initialize-token-list';
+import getUniqueFilePath from './unique-path';
 
-export {classify, load, resolve, output, initializeTokenList};
+export {classify, load, resolve, output, initializeTokenList, getUniqueFilePath};
 
-export function getUniqueFilePath(dirPath: string, baseName: string, ext = 'json'): string {
-  let filePath = path.join(dirPath, `${baseName}.${ext}`);
-  let counter = 1;
-
-  while (fs.existsSync(filePath)) {
-    filePath = path.join(dirPath, `${baseName}-${counter}.${ext}`);
-    counter++;
-  }
-
-  return filePath;
-}
 
 export function normalizeTokens(tokens: TokenList['tokens']): TokenList['tokens'] {
   return (tokens ?? []).filter((token) => (
