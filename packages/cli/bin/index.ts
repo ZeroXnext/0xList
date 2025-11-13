@@ -10,7 +10,24 @@ import {
   LIST_SOURCES
 } from '@constants';
 
-yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) => {
+yargs(hideBin(process.argv))
+    .option("output", {
+      type: "string",
+      alias: "o",
+      default: "dist/src",
+    })
+    .command("auto-version", "Update token list", (argv) => {
+      argv.option("target", {
+        alias: "target",
+        type: "string",
+      })
+
+    }, (args) => {
+      const {output} = args;
+      const [tokenListMap, , paths] = load(output);
+
+    })
+    .command("generate", "Generate token list", (argv) => {
   return argv.option("verbose", {type: "boolean", alias: "v", default: false})
       .option("defaultListName", {
         type: "string",
@@ -45,11 +62,6 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) =
         choices: DEFAULT_NETWORK_TYPES,
         description: "Allowed network type"
       })
-      .option("output", {
-        type: "string",
-        alias: "o",
-        default: "dist/src",
-      });
 }, async (args) => {
   const {
     chains,
