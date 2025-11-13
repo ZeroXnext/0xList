@@ -7,6 +7,3 @@ import getUniqueFilePath from './unique-path';
 import {normalizeTokenList} from './normalize';
 
 export {classify, load, resolve, output, initializeTokenList, getUniqueFilePath, normalizeTokenList};
-
-
-
