@@ -1,4 +1,4 @@
-import {Chain} from './src/types';
+import {Chain} from '@types';
 
 export const CHAINS_MAPPING: Record<number, Chain> = {
   1: {name: "ethereum", type: "mainnet"},
