@@ -29,6 +29,18 @@ A modular toolchain for generating, validating, and maintaining Uniswap-compatib
    yarn install
    ```
 
+## Commit Guidelines
+
+This repository uses **[Commitizen](https://github.com/commitizen/cz-cli)** for standardized commit messages following the **Conventional Commits** specification.
+
+### How to Commit
+
+Use the Commitizen CLI instead of `git commit`:
+
+```bash
+git cz
+```
+
 ## Project Structure
 
 - `packages/core`: Core libraries and utilities
