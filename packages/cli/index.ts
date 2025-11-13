@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
 import {hideBin} from 'yargs/helpers';
-import findSources from './scripts/find-sources';
+import resolve from './scripts/resolve';
 import classify from './scripts/classify';
 import {
   DEFAULT_LIST_VERSION,
@@ -63,7 +63,7 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) =
     defaultListName,
     defaultListVersion: [major, patch, minor]
   } = args;
-  const lists = await findSources(sources, defaultListName, {
+  const lists = await resolve(sources, defaultListName, {
     major: parseInt(major.toString()),
     patch: parseInt(patch.toString()),
     minor: parseInt(minor.toString())
