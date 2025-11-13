@@ -20,6 +20,7 @@
   ],
   "include": [
     "src/**/*.ts",
-    "bin/*.ts"
+    "bin/*.ts",
+    "jest.config.ts",
   ],
 }
