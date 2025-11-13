@@ -6,13 +6,20 @@
     "target": "ES2023",
     "declarationDir": "dist",
     "composite": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@utils": ["src/utils.ts"],
+      "@types": ["src/types.ts"],
+      "@constants": ["src/constants.ts"],
+      "@helpers": ["src/helpers/index.ts"]
+    }
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "scripts/*.ts",
-    "*.ts"
-  ]
+    "src/**/*.ts",
+    "bin/*.ts"
+  ],
 }

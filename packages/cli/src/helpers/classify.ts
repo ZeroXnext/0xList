@@ -1,8 +1,8 @@
 import {TokenList, tokenListSchema} from "@tokenlist-builder/core";
-import {TokenListsMap} from '../types';
-import {CHAINS_MAPPING} from '../constants';
-import {initializeTokenList} from '../helpers';
-import {slugify} from '../utils';
+import {TokenListsMap} from '@types';
+import {CHAINS_MAPPING} from '@constants';
+import {initializeTokenList} from '@helpers';
+import {slugify} from '@utils';
 
 function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], initialMap: TokenListsMap = new Map(), verbose: boolean): TokenListsMap {
   const mappedTokenList: TokenListsMap = new Map();

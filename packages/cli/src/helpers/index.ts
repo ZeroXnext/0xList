@@ -1,11 +1,17 @@
 import {TokenList, tokenListSchema} from '@tokenlist-builder/core';
-import {DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from './constants';
-import {MutableTokenList} from './types';
-import {partitionArray} from './utils';
+import {DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '@constants';
+import {MutableTokenList} from '@types';
+import {partitionArray} from '@utils';
 import path from 'node:path';
 import * as fs from 'node:fs';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
+import classify from './classify';
+import load from './load';
+import resolve from './resolve';
+import output from './output';
+
+export {classify, load, resolve, output};
 
 export function partitionTokenList(tokenList: Omit<TokenList, "version" | "timestamp">,
                                    version: TokenList['version'] = DEFAULT_LIST_VERSION,
@@ -96,3 +102,4 @@ export function normalizeTokenList(data: MutableTokenList, defaultTokenListName 
 
   return maybePartitionedLists;
 }
+

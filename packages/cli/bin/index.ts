@@ -1,17 +1,14 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
 import {hideBin} from 'yargs/helpers';
-import resolve from './scripts/resolve';
-import classify from './scripts/classify';
+import {classify, load, output, resolve} from '@helpers';
 import {
   DEFAULT_LIST_VERSION,
   DEFAULT_NETWORK_TYPES,
   DEFAULT_SUPPORTED_CHAINS,
   DEFAULT_TOKEN_LIST_NAME,
   LIST_SOURCES
-} from './constants';
-import output from './scripts/output';
-import parse from './scripts/load';
+} from '@constants';
 
 yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) => {
   return argv.option("verbose", {type: "boolean", alias: "v", default: false})
@@ -68,7 +65,7 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) =
     patch: parseInt(patch.toString()),
     minor: parseInt(minor.toString())
   });
-  const initialMap = parse(outputDir);
+  const initialMap = load(outputDir);
   const classified = classify(lists.flat(), chains, allowedNetworkTypes, initialMap, verbose);
   output(outputDir, classified, true);
 }).help('help').strictCommands().parse();

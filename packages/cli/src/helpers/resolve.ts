@@ -1,7 +1,7 @@
 import {TokenList} from "@tokenlist-builder/core";
-import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '../constants';
-import {MutableTokenList} from '../types';
-import {normalizeTokenList} from '../helpers';
+import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '@constants';
+import {MutableTokenList} from '@types';
+import {normalizeTokenList} from '@helpers';
 
 
 async function main(sources: string[], defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, defaultVersion = DEFAULT_LIST_VERSION): Promise<TokenList[][]> {
