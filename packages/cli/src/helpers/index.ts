@@ -1,5 +1,5 @@
 import classify from './classify';
-import load from './load-flat-local';
+import load from './load';
 import initializeTokenList from './initialize-token-list';
 import bump from './bump';
 

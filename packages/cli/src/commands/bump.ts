@@ -1,6 +1,6 @@
 import {Entry} from '@types';
 import * as childProcess from 'node:child_process';
-import loadFlatLocal from '../helpers/load-flat-local';
+import load from '../helpers/load';
 import {TokenList} from '@tokenlist-builder/core';
 import bump from '../helpers/bump';
 import outputBasic from '../helpers/output-basic';
@@ -15,7 +15,7 @@ function addBumpCommand(entry: Entry): void {
     const repo = parseGitRemoteUrl(stderr);
     const baseUrl = `https://raw.githubusercontent.com/${repo.username}/${repo.repo}`;
 
-    const [localLists] = loadFlatLocal(outputDir);
+    const [localLists] = load(outputDir);
 
     for (const [key, localList] of localLists.entries()) {
       try {
