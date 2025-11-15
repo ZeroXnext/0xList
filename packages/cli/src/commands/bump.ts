@@ -27,8 +27,8 @@ function addBumpCommand(entry: Entry): void {
 
         const remoteList = await res.json() as TokenList;
 
-        bump(remoteList, localList);
-        outputBasic(outputDir, localList);
+        const changed = bump(remoteList, localList);
+        changed && outputBasic(outputDir, localList);
       } catch {
         // ignore, it means that the list is not new
       }
