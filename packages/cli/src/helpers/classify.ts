@@ -50,9 +50,8 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
 
     const maxTokensPerList = tokenListSchema.properties.tokens.maxItems;
     if (offset > -1) {
-      const off = (maxTokensPerList - offset); // try the next list
+      const off = Math.floor(offset / maxTokensPerList); // try the next list
       listPath = `${rootDir}/${chainInfo.type}/${chainInfo.name}/${slugify(tokenListName)}-${off}.json`;
-      tokenListName = tokenList.name + ` ${off}`;
     }
 
     let list: Mutable<TokenList> | undefined = mapping.get(listPath);
@@ -70,7 +69,8 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
     }
 
     // 8. Check if the list has reached the maximum tokens, if so write another list
-    if (listPath.length === maxTokensPerList) {
+    if (list?.tokens.length === maxTokensPerList) {
+      console.info("Making a new list from: ", tokenList.name, ` ${i}`)
       return classify(tokenList, supportedNetworks, rootDir, seen, version, defaultTokenListName, i);
     }
 
