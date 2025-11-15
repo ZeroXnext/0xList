@@ -2,7 +2,7 @@ import {Entry} from '@types';
 import * as childProcess from 'node:child_process';
 import loadFlatLocal from '../helpers/load-flat-local';
 import {TokenList} from '@tokenlist-builder/core';
-import autoVersion from '../helpers/auto-version';
+import bump from '../helpers/bump';
 import outputBasic from '../helpers/output-basic';
 import {parseGitRemoteUrl} from '@utils';
 
@@ -27,7 +27,7 @@ function addBumpCommand(entry: Entry): void {
 
         const remoteList = await res.json() as TokenList;
 
-        autoVersion(remoteList, localList);
+        bump(remoteList, localList);
         outputBasic(outputDir, localList);
       } catch {
         // ignore, it means that the list is not new

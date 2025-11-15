@@ -10,7 +10,7 @@ import {timestamp} from '@utils';
  * @param oldList – The old token list
  * @param newList – The new list containing modifications
  */
-function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
+function bump(oldList: TokenList, newList: Mutable<TokenList>) {
   const version: Mutable<TokenList['version']> = oldList.version;
   let increment: keyof TokenList['version'] | undefined;
 
@@ -46,4 +46,4 @@ function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
   }
 }
 
-export default autoVersion;
+export default bump;

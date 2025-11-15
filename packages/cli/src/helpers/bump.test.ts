@@ -1,4 +1,4 @@
-import autoVersion from "./auto-version";
+import autoVersion from "./bump";
 import { TokenList } from "@tokenlist-builder/core";
 import {timestamp} from '@utils';
 // mock timestamp()
