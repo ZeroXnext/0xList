@@ -2,12 +2,6 @@ import {TokenList} from '@tokenlist-builder/core';
 import {Mutable} from '@types';
 import {timestamp} from '@utils';
 
-interface TokenListChangeLog {
-  added: TokenList['tokens'],
-  removed: TokenList['tokens'],
-  modified: TokenList['tokens'],
-}
-
 /**
  * List versions must follow the rules:
  * - Increment major version when tokens are removedIncrement minor version when tokens are added
@@ -17,9 +11,6 @@ interface TokenListChangeLog {
  * @param newList – The new list containing modifications
  */
 function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
-  const added: TokenList['tokens'] = [];
-  const removed: TokenList['tokens'] = [];
-  const modified: TokenList['tokens'] = [];
   const version: Mutable<TokenList['version']> = oldList.version;
   let increment: keyof TokenList['version'] | undefined;
 
@@ -27,7 +18,6 @@ function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
     const tokenInfo = oldList.tokens.find(oldToken => oldToken.address !== token.address);
     if (tokenInfo) {
       // New Token has been added
-      added.push(token);
       increment = "minor";
     }
   }
@@ -37,7 +27,7 @@ function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
     if (!tokenInfo) {
       // Token has been removed
       increment = "major";
-      removed.push(token);
+      // removed.push(token);
     }
 
     if (tokenInfo && (
@@ -46,7 +36,6 @@ function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
         tokenInfo.symbol !== token.symbol ||
         tokenInfo.logoURI !== token.logoURI ||
         JSON.stringify(tokenInfo.tags) !== JSON.stringify(token.tags))) {
-      modified.push(token);
       increment = "patch";
     }
     // increment version
