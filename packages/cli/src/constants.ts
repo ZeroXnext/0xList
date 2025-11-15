@@ -19,7 +19,9 @@ export const CHAINS_MAPPING: Record<number, Chain> = {
   43114: {name: "avalanche", type: "mainnet"},
   80001: {name: "polygon-mumbai", type: "testnet"},
   84531: {name: "base-goerli", type: "testnet"},
-  11155111: {name: "sepolia", type: "testnet"}
+  11155111: {name: "sepolia", type: "testnet"},
+  8453: {name: "base", type: "mainnet"},
+  324: {name: "zkSync Mainnet", type: "mainnet"},
 };
 
 export const LIST_SOURCES = [
