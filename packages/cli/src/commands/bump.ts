@@ -3,7 +3,7 @@ import * as childProcess from 'node:child_process';
 import load from '../helpers/load';
 import {TokenList} from '@tokenlist-builder/core';
 import bump from '../helpers/bump';
-import outputBasic from '../helpers/output-basic';
+import output from '../helpers/output';
 import {parseGitRemoteUrl} from '@utils';
 
 
@@ -28,7 +28,7 @@ function addBumpCommand(entry: Entry): void {
         const remoteList = await res.json() as TokenList;
 
         const changed = bump(remoteList, localList);
-        changed && outputBasic(key, localList);
+        changed && output(key, localList);
       } catch (err) {
         console.error(err);
       }

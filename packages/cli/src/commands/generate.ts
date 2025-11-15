@@ -8,7 +8,7 @@ import {
 import {classify} from '@helpers';
 import {Entry, SeenKey} from '@types';
 import fetchExternal from '../helpers/fetch-external';
-import outputBasic from '../helpers/output-basic';
+import output from '../helpers/output';
 
 function addGenerateCommand(entry: Entry) {
   entry
@@ -61,7 +61,7 @@ function addGenerateCommand(entry: Entry) {
           }
           const classified = classify(list, allowedNetworkTypes, outputDir, seen, version, defaultListName);
           for (const [filepath, list] of classified.entries()) {
-            outputBasic(filepath, list);
+            output(filepath, list);
           }
         }
       });
