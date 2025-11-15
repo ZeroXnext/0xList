@@ -16,7 +16,6 @@ function addBumpCommand(entry: Entry): void {
     const baseUrl = `https://raw.githubusercontent.com/${repo.username}/${repo.repo}`;
 
     const [localLists] = load(outputDir);
-
     for (const [key, localList] of localLists.entries()) {
       try {
         const res = await fetch(`${baseUrl}${key}`);
