@@ -11,8 +11,8 @@ function addBumpCommand(entry: Entry): void {
   entry.command("bump", "It auto-updates the version of the token list, according to rules", () => {
   }, async (argv) => {
     const {output: outputDir} = argv;
-    const stder = childProcess.execSync("git remote get-url origin", {encoding: 'utf8'});
-    const repo = parseGitRemoteUrl(stder);
+    const stderr = childProcess.execSync("git remote get-url origin", {encoding: 'utf8'});
+    const repo = parseGitRemoteUrl(stderr);
     const baseUrl = `https://raw.githubusercontent.com/${repo.username}/${repo.repo}`;
 
     const localLists = loadFlatLocal(outputDir);
