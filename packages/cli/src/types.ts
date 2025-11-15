@@ -1,4 +1,5 @@
 import {TokenList} from '@tokenlist-builder/core';
+import {entry} from './index';
 
 export interface Chain {
   name: string;
@@ -12,3 +13,6 @@ export type Mutable<T> = {
 };
 
 export type MutableTokenList = Mutable<TokenList>;
+
+
+export type Entry = typeof entry;
