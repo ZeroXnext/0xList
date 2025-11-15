@@ -25,25 +25,6 @@ export function timestamp() {
   return new Date().toISOString();
 }
 
-export function getOrCreateMap<K, V>(
-    target: Partial<Record<string, any>>,
-    targetKey: keyof typeof target,
-    initialKey?: K,
-    initialValue?: V,
-): [Map<K, V>, V | undefined] {
-  let map = target[targetKey] as Map<K, V> | undefined;
-
-  if (!map) {
-    map = new Map<K, V>();
-    target[targetKey] = map as any;
-  }
-  if (initialKey && initialValue && !map.has(initialKey)) {
-    map.set(initialKey, initialValue);
-  }
-  return [map, initialKey ? map.get(initialKey) : undefined];
-}
-
-
 export function parseGitRemoteUrl(url: string): { username: string; repo: string } {
   // Remove trailing whitespace
   url = url.trim();
