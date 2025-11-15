@@ -5,7 +5,7 @@ import {slugify} from '@utils';
 import createList from './create-list';
 
 const mapping = new Map<ListPath, TokenList>([]);
-export default function classify(tokenList: TokenList, supportedNetworks: string[], rootDir: string, seen: Set<SeenKey>, version = tokenList.version, defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, offset = -1): Map<ListPath, TokenList> {
+export default function classify(tokenList: TokenList, supportedNetworks: string[], rootDir: string, seen: Set<SeenKey>, defaultVersion = tokenList.version, defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, offset = -1): Map<ListPath, TokenList> {
   for (let i = Math.max(offset, 0); i < tokenList.tokens.length; i++) {
 
     const token = tokenList.tokens[i];
@@ -64,14 +64,14 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
         tokens: [],
         keywords: tokenList.keywords,
         logoURI: tokenList.logoURI
-      }));
+      }, defaultVersion));
       list = mapping.get(listPath);
     }
 
     // 8. Check if the list has reached the maximum tokens, if so write another list
     if (list?.tokens.length === maxTokensPerList) {
       console.info("Making a new list from: ", tokenList.name, ` ${i}`)
-      return classify(tokenList, supportedNetworks, rootDir, seen, version, defaultTokenListName, i);
+      return classify(tokenList, supportedNetworks, rootDir, seen, defaultVersion, defaultTokenListName, i);
     }
 
     // 9. Update token list
