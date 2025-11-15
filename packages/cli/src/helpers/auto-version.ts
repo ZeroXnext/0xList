@@ -14,7 +14,7 @@ interface TokenListChangeLog {
  * - Increment patch version when tokens already on the list have minor details changed (name, symbol, logo URL, decimals)
  * - Changing a token address or chain ID is considered both a remove and an add, and should be a major version update.
  */
-export function diffTokenLists(oldList: TokenList, newList: Mutable<TokenList>) {
+function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
   const added: TokenList['tokens'] = [];
   const removed: TokenList['tokens'] = [];
   const modified: TokenList['tokens'] = [];
@@ -55,3 +55,5 @@ export function diffTokenLists(oldList: TokenList, newList: Mutable<TokenList>) 
     }
   }
 }
+
+export default autoVersion;
