@@ -21,6 +21,10 @@ export function slugify(str: string): string {
       .replace(/^-+|-+$/g, '');         // remove leading/trailing hyphens
 }
 
+export function timestamp() {
+  return new Date().toISOString();
+}
+
 export function getOrCreateMap<K, V>(
     target: Partial<Record<string, any>>,
     targetKey: keyof typeof target,
