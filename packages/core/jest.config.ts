@@ -5,13 +5,13 @@ const tsJestTransformCfg = createDefaultPreset().transform;
 
 export default {
   testEnvironment: "node",
-  testMatch: ["tests/*.test.ts","<rootDir>/**/**/.test.ts", "<rootDir>/**/*.test.ts"],
+  testMatch: ["<rootDir>/**/*.test.ts"],
   transform: {
     ...tsJestTransformCfg,
     '^.+\\.tsx?$': [
       'ts-jest',
       {
-        tsconfig: 'tsconfig.json',
+        tsconfig: 'tsconfig.jest.json',
       },
     ],
   },
