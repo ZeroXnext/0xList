@@ -8,9 +8,10 @@
     "declarationDir": "dist",
     "composite": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node16"
+    "moduleResolution": "node"
   },
   "include": [
     "src/**/*",
+    "jest.config.ts"
   ]
 }
