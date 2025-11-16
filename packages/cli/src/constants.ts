@@ -41,6 +41,7 @@ export const DEFAULT_LIST_VERSION = {
   minor: 0,
 };
 
+export const GITHUB_CONTENT_BASE_URL = "https://raw.githubusercontent.com"
 
 export const DEFAULT_TOKEN_LIST_NAME = "Token list";
 export const DEFAULT_LIST_LOGO_URI = "";

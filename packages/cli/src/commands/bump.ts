@@ -5,6 +5,7 @@ import {TokenList} from '@tokenlist-builder/core';
 import bump from '../helpers/bump';
 import output from '../helpers/output';
 import {parseGitRemoteUrl} from '@utils';
+import {GITHUB_CONTENT_BASE_URL} from '@constants';
 
 
 function addBumpCommand(entry: Entry): void {
@@ -13,8 +14,7 @@ function addBumpCommand(entry: Entry): void {
     const {output: outputDir} = argv;
     const stderr = childProcess.execSync("git remote get-url origin", {encoding: 'utf8'});
     const repo = parseGitRemoteUrl(stderr);
-    const baseUrl = `https://raw.githubusercontent.com/${repo.username}/${repo.repo}`;
-
+    const baseUrl = `${GITHUB_CONTENT_BASE_URL}/${repo.username}/${repo.repo}`;
     const [localLists] = load(outputDir);
     for (const [key, localList] of localLists.entries()) {
       try {
