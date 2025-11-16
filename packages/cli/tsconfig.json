@@ -6,8 +6,8 @@
     "target": "ES2023",
     "declarationDir": "dist",
     "composite": true,
-    "moduleResolution": "node",
     "baseUrl": ".",
+    "moduleResolution": "node",
     "paths": {
       "@utils": ["src/utils.ts"],
       "@types": ["src/types.ts"],
@@ -21,6 +21,5 @@
   "include": [
     "src/**/*.ts",
     "bin/*.ts",
-    "jest.config.ts",
   ],
 }
