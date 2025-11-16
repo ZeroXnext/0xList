@@ -1,7 +1,6 @@
 import {ListIndex, ListPath, ListURL} from '@types';
-import {TokenList} from "@tokenlist-builder/core";
+import {timestamp, TokenList} from "@tokenlist-builder/core";
 import fs from 'node:fs';
-import {timestamp} from '@utils';
 import path from 'node:path';
 
 export default function buildIndex(remoteBaseUrl: string, indexFullPath: string, listMap: Map<ListPath, TokenList>) {

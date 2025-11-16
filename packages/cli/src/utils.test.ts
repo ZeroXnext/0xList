@@ -1,4 +1,4 @@
-import {slugify} from '@utils';
+import {slugify} from '@tokenlist-builder/core';
 
 describe("utils", () => {
   describe("slugify", () => {

@@ -1,8 +1,7 @@
 import bump from "./bump";
-import { TokenList } from "@tokenlist-builder/core";
-import {timestamp} from '@utils';
+import {timestamp, TokenList} from "@tokenlist-builder/core";
 // mock timestamp()
-jest.mock("@utils", () => ({
+jest.mock("@tokenlist-builder/core", () => ({
   __esModule: true,
   timestamp: jest.fn(() => "2024-01-01T00:00:00Z"),
 }));
