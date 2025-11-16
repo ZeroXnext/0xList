@@ -8,6 +8,9 @@ import path from 'node:path';
  */
 export default function getPaths(outputDir: string) {
   return fs.readdirSync(outputDir, {recursive: true}).map(item => item.toString()).filter((p) => {
+    if (p === "index.json") {
+      return false;
+    }
     try {
       return fs.statSync(path.join(outputDir, p.toString())).isFile();
     } catch (e) {
