@@ -1,7 +1,6 @@
 import fs from 'node:fs';
-import {ListPath, SeenKey, TokenList} from '@tokenlist-builder/core';
+import {CHAINS_MAPPING, ListPath, SeenKey, TokenList} from '@tokenlist-builder/core';
 import path from 'node:path';
-import {CHAINS_MAPPING} from '@constants';
 import getPaths from './get-paths';
 
 export default function load(outputDir: string): [Map<ListPath, TokenList>, Set<SeenKey>] {

@@ -1,5 +1,4 @@
-import {slugify, TokenList, tokenListSchema, Mutable, createList, Chain, ListPath, SeenKey, DEFAULT_TOKEN_LIST_NAME} from "@tokenlist-builder/core";
-import {CHAINS_MAPPING} from '@constants';
+import {slugify, TokenList, tokenListSchema, Mutable, createList, Chain, ListPath, SeenKey, DEFAULT_TOKEN_LIST_NAME, CHAINS_MAPPING} from "@tokenlist-builder/core";
 const mapping = new Map<ListPath, TokenList>([]);
 
 export default function classify(tokenList: TokenList, supportedNetworks: string[], rootDir: string, seen: Set<SeenKey>, defaultVersion = tokenList.version, defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, offset = -1): Map<ListPath, TokenList> {
