@@ -18,4 +18,5 @@ export default function buildIndex(remoteBaseUrl: string, indexFullPath: string,
     });
   }
   fs.writeFileSync(indexFullPath, JSON.stringify(indexData, null, 2), {encoding: "utf8"});
+  return indexData;
 }

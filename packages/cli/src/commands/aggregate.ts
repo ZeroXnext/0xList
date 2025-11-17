@@ -8,6 +8,9 @@ import path from 'node:path';
 import {GITHUB_CONTENT_BASE_URL} from '@constants';
 import {parseGitRemoteUrl} from '@utils';
 import childProcess from 'node:child_process';
+import mergeIndexes from '@helpers/merge-indexes';
+import {ListIndex} from '@tokenlist-builder/core';
+import fs from 'node:fs';
 
 // user -> cli -> aggregate -> network_type -> index.json
 // user -> cli -> aggregate -> network_type -> chain_name -> index.json
@@ -52,10 +55,18 @@ export default function addAggregate(entry: Entry) {
         throw new Error("Chain name '" + chain + "' must be a string");
       }
     });
+
+    const indexes: ListIndex[] = [];
     // Build the existent directories based on provided input and then load each index
     forEachIndex(networkTypes as string[], chains as string[], output, indexFileName, (dirPath, indexPath) => {
       const [loaded] = load(dirPath);
-      buildIndex(path.join(GITHUB_CONTENT_BASE_URL, username, repo), path.join(output, indexPath), loaded);
+      const listIndex = buildIndex(path.join(GITHUB_CONTENT_BASE_URL, username, repo), path.join(output, indexPath), loaded);
+      indexes.push(listIndex);
     });
+
+    const chainTypeIndexes = mergeIndexes(indexes, path.join(GITHUB_CONTENT_BASE_URL, username, repo, output));
+    for (let [networkType, listIndex] of chainTypeIndexes.entries()) {
+      fs.writeFileSync(path.join(output, networkType, 'index.json'), JSON.stringify(listIndex, null, 2), 'utf8');
+    }
   });
 }
