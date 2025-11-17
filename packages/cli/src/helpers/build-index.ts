@@ -1,5 +1,4 @@
-import {ListIndex, ListPath, ListURL} from '@types';
-import {timestamp, TokenList} from "@tokenlist-builder/core";
+import {ListIndex, ListPath, ListURL, timestamp, TokenList} from "@tokenlist-builder/core";
 import fs from 'node:fs';
 import path from 'node:path';
 

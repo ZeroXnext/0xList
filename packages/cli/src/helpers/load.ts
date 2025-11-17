@@ -1,7 +1,6 @@
 import fs from 'node:fs';
-import {TokenList} from '@tokenlist-builder/core';
+import {ListPath, SeenKey, TokenList} from '@tokenlist-builder/core';
 import path from 'node:path';
-import {ListPath, SeenKey} from '@types';
 import {CHAINS_MAPPING} from '@constants';
 import getPaths from './get-paths';
 

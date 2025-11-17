@@ -1,6 +1,7 @@
-import {DEFAULT_LIST_VERSION, DEFAULT_NETWORK_TYPES, DEFAULT_TOKEN_LIST_NAME, LIST_SOURCES} from '@constants';
+import {DEFAULT_TOKEN_LIST_NAME, DEFAULT_LIST_VERSION, SeenKey} from "@tokenlist-builder/core"
+import {DEFAULT_NETWORK_TYPES, LIST_SOURCES} from '@constants';
 import {classify} from '@helpers';
-import {Entry, SeenKey} from '@types';
+import {Entry} from '@types';
 import fetchExternal from '../helpers/fetch-external';
 import output from '../helpers/output';
 import validate from '../helpers/validate';
