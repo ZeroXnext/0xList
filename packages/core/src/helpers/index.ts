@@ -1,3 +1,4 @@
 import bump from './bump';
 import createList from "./create-list"
-export {bump, createList};
+import classify from './classify';
+export {bump, createList, classify};
