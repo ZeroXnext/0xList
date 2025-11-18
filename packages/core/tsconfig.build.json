@@ -7,15 +7,28 @@
     "declaration": true,
     "declarationDir": "dist",
     "baseUrl": ".",
-    "composite": false,           // turn this OFF unless you're actually using project references
+    "composite": false,
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "paths": {
-      "@utils": ["src/utils.ts"],
-      "@types": ["src/types.ts"],
-      "@constants": ["src/constants.ts"],
-      "@helpers": ["src/helpers/index.ts"]
+      "@utils": [
+        "src/utils.ts"
+      ],
+      "@types": [
+        "src/types.ts"
+      ],
+      "@constants": [
+        "src/constants.ts"
+      ],
+      "@helpers": [
+        "src/helpers/index.ts"
+      ]
     }
   },
-  "include": ["src/**/*"]
+  "exclude": [
+    "src/**/*.test.ts"
+  ],
+  "include": [
+    "src/**/*"
+  ]
 }
