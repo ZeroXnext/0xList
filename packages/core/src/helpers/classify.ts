@@ -43,17 +43,21 @@ export default function classify(tokenList: TokenList, config: Config, offset = 
       continue;
     }
 
-    // 3. Check if network or chains are supported
-    if (
-        !allowedNetworkTypes.includes(chainInfo.type) ||
-        !allowedChains.includes(chainInfo.name) ||
-        disallowedChains.includes(chainInfo.name) ||
-        disallowedNetworkTypes.includes(chainInfo.type) ||
-        !allowedTokens.includes(token.address as `0x${string}` ||
-            disallowedTokens.includes(token.address as `0x${string}`)
-        )
+    const isChainAllowed =
+        (!allowedNetworkTypes.length || allowedNetworkTypes.includes(chainInfo.type)) &&
+        (!allowedChains.length || allowedChains.includes(chainInfo.name));
 
-    ) {
+    const isChainDenied =
+        disallowedNetworkTypes.includes(chainInfo.type) ||
+        disallowedChains.includes(chainInfo.name);
+
+    const isTokenAllowed =
+        (!allowedTokens.length || allowedTokens.includes(token.address as `0x${string}`));
+
+    const isTokenDenied =
+        disallowedTokens.includes(token.address as `0x${string}`);
+
+    if (!isChainAllowed || isChainDenied || !isTokenAllowed || isTokenDenied) {
       continue;
     }
 
