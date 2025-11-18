@@ -35,6 +35,8 @@ export interface Chain {
   type: string;
 }
 
+export type ChainMappingType = Map<number, Chain>
+
 export interface ListIndex {
   timestamp: string; // representing last updated at
   lists: Array<Omit<TokenList, 'tokens'> & Record<"contents", ListURL>>;

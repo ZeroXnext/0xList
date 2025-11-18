@@ -1,12 +1,12 @@
 import {Chain, ListPath, Mutable, SeenKey} from '@types';
 import {schema as tokenListSchema, TokenList} from '@uniswap/token-lists';
-import {CHAINS_MAPPING, DEFAULT_TOKEN_LIST_NAME} from '@constants';
+import {DEFAULT_CHAINS, DEFAULT_TOKEN_LIST_NAME} from '@constants';
 import {slugify} from '@utils';
 import {createList} from '@helpers';
 
 const mapping = new Map<ListPath, TokenList>([]);
 
-export default function classify(tokenList: TokenList, supportedNetworks: string[], rootDir: string, seen: Set<SeenKey>, defaultVersion = tokenList.version, defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, offset = -1): Map<ListPath, TokenList> {
+export default function classify(tokenList: TokenList, supportedNetworks: string[], rootDir: string, seen: Set<SeenKey>, defaultVersion = tokenList.version, defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, chainsMapping = DEFAULT_CHAINS, offset = -1): Map<ListPath, TokenList> {
   for (let i = Math.max(offset, 0); i < tokenList.tokens.length; i++) {
 
     const token = tokenList.tokens[i];
@@ -22,7 +22,7 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
       continue;
     }
 
-    const chainInfo: Chain | undefined = CHAINS_MAPPING[token.chainId];
+    const chainInfo: Chain | undefined = chainsMapping?.get(token.chainId);
     if (!chainInfo) {
       console.info(`Unsupported chain_id: ${token.chainId}`);
       continue;
@@ -72,7 +72,7 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
     // 8. Check if the list has reached the maximum tokens, if so write another list
     if (list?.tokens.length === maxTokensPerList) {
       console.info("Making a new list from: ", tokenList.name, ` ${i}`);
-      return classify(tokenList, supportedNetworks, rootDir, seen, defaultVersion, defaultTokenListName, i);
+      return classify(tokenList, supportedNetworks, rootDir, seen, defaultVersion, defaultTokenListName, chainsMapping, i);
     }
 
     // 9. Update token list
