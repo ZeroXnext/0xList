@@ -6,21 +6,5 @@ import defaultConfig from './config/default';
 import loader from './config/loader';
 
 export {bump, createList, classify, supportedChains} from '@helpers';
-export {
-  Config,
-  ListIndex,
-  ListPath,
-  ListURL,
-  TokenListIndex,
-  Chain,
-  TokenList,
-  IndexPath,
-  IndexName,
-  IndexURL,
-  GHUserRawContentURL,
-  ChainMappingType,
-  Plugin,
-  SeenKey,
-  Mutable
-} from "./types";
+export {} from "./types";
 export {configSchema, tokenListIndexSchema, timestamp, slugify, schema as tokenListSchema, loader, defaultConfig};
