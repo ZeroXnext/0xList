@@ -11,8 +11,8 @@ import fs from 'node:fs';
 
 // user -> cli -> aggregate -> network_type -> index.json
 // user -> cli -> aggregate -> network_type -> chain_name -> index.json
-export default function addAggregate(entry: Entry, config: Config) {
-  entry.command("aggregate", "It aggregates a directory of token lists into <directory>/index.json", (args) => {
+export default function addSync(entry: Entry, config: Config) {
+  entry.command("sync", "It aggregates a directory of token lists into <directory>/index.json", (args) => {
   }, () => {
     // Enforce string[] for networkTypes
     config.allowedNetworkTypes.forEach((networkType) => {
