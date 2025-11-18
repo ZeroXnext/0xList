@@ -66,7 +66,7 @@ export default function classify(tokenList: TokenList, config: Config, offset = 
     let tokenListName: string = tokenList.name;
 
     // 5. Check and normalize list name
-    if (tokenListName.length > tokenListSchema.properties.name.maxLength) {
+    if (tokenListName.length > tokenListSchema.properties.name.maxLength || tokenList.name === config.indexFileName) {
       tokenListName = defaultTokenListName;
     }
 
