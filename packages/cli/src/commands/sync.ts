@@ -1,4 +1,4 @@
-import {classify, Config, defaultConfig} from "@tokenlist-builder/core";
+import {classify, Config} from "@tokenlist-builder/core";
 import {Entry} from '@types';
 import fetchExternal from '@helpers/fetch-external';
 import output from '@helpers/output';
