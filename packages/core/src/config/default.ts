@@ -10,7 +10,7 @@ import {
   SYNC_SOURCES
 } from '@constants';
 
-const [allowedChains, allowedNetworkTypes] = supportedChains();
+const [allowedNetworkTypes, allowedChains] = supportedChains();
 const defaultConfig: Config = {
   outputDir: DEFAULT_OUTPUT_DIR,
   defaultLogoUrl: DEFAULT_LIST_LOGO_URI,
