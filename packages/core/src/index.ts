@@ -6,5 +6,5 @@ import defaultConfig from './config/default';
 import loader from './config/loader';
 
 export {bump, createList, classify, supportedChains} from '@helpers';
-export * from "./types";
+export type * from "./types";
 export {configSchema, tokenListIndexSchema, timestamp, slugify, schema as tokenListSchema, loader, defaultConfig};
