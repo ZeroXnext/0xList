@@ -11,6 +11,8 @@ export default function classify(tokenList: TokenList, config: Config, offset = 
     allowedChains,
     disallowedChains,
     disallowedNetworkTypes,
+    allowedTokens,
+    disallowedTokens,
     outputDir,
     defaultListVersion,
     defaultTokenListName,
@@ -46,8 +48,12 @@ export default function classify(tokenList: TokenList, config: Config, offset = 
         !allowedNetworkTypes.includes(chainInfo.type) ||
         !allowedChains.includes(chainInfo.name) ||
         disallowedChains.includes(chainInfo.name) ||
-        disallowedNetworkTypes.includes(chainInfo.type
-        )) {
+        disallowedNetworkTypes.includes(chainInfo.type) ||
+        !allowedTokens.includes(token.address as `0x${string}` ||
+            disallowedChains.includes(token.address as `0x${string}`)
+        )
+
+    ) {
       continue;
     }
 
