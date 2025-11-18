@@ -1,5 +1,4 @@
 import {TokenList, Version} from '@uniswap/token-lists';
-import {GITHUB_CONTENT_BASE_URL} from '@constants';
 
 export interface TokenListIndex {
   timestamp: string;
@@ -55,7 +54,7 @@ export interface Config<T = ChainMappingType> {
   verbose: boolean;
   defaultLogoUrl: string;
   chainsMapping: T;
-  defaultListVersion: Version
+  defaultListVersion: Version;
   outputDir: string;
   indexFileName: string;
   defaultTokenListName: string;
