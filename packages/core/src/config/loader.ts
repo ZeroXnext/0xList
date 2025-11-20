@@ -1,6 +1,9 @@
 import { Config } from '@types';
 import defaultConfig from './default';
 
+/**
+ * @todo: Rigurously validate config before returning
+ */
 async function loader(cfg: string | Config): Promise<Config> {
 
   let config: Partial<Config>;
