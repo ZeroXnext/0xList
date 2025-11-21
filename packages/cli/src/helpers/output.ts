@@ -1,4 +1,4 @@
-import { TokenList } from '@tokenlist-builder/core';
+import { TokenList } from '@0xlist/core';
 import fs from 'node:fs';
 
 export default function output(output: string, tokenList: TokenList) {

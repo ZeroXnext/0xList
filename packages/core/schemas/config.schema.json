@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://0xnext.org/tokenlist-builder/packages/core/schemas/tokenlist-rules.schema.json",
+  "$id": "https://0xnext.org/0xlist/packages/core/schemas/tokenlist-rules.schema.json",
   "title": "Token List Rules",
   "description": "Rules for token lists, structural validation, and allowed/disallowed tokens/chains",
   "type": "object",

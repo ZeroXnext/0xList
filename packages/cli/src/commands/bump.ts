@@ -1,7 +1,7 @@
 import { Entry } from '@types';
 import * as childProcess from 'node:child_process';
 import load from '@helpers/load';
-import { bump, Config, TokenList } from '@tokenlist-builder/core';
+import { bump, Config, TokenList } from '@0xlist/core';
 import output from '@helpers/output';
 import { parseGitRemoteUrl } from '@utils';
 import path from 'node:path';

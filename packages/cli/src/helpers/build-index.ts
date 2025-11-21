@@ -1,11 +1,4 @@
-import {
-  ListIndex,
-  ListPath,
-  ListURL,
-  Mutable,
-  timestamp,
-  TokenList,
-} from '@tokenlist-builder/core';
+import { ListIndex, ListPath, ListURL, Mutable, timestamp, TokenList } from '@0xlist/core';
 import fs from 'node:fs';
 import path from 'node:path';
 

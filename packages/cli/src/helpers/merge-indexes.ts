@@ -1,4 +1,4 @@
-import { ListIndex, timestamp } from '@tokenlist-builder/core';
+import { ListIndex, timestamp } from '@0xlist/core';
 
 /**
  *

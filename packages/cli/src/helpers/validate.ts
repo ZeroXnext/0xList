@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import { TokenList, tokenListSchema } from '@tokenlist-builder/core';
+import { TokenList, tokenListSchema } from '@0xlist/core';
 import addFormats from 'ajv-formats';
 
 export default function validate(tokenList: TokenList) {

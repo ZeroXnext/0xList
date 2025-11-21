@@ -1,4 +1,4 @@
-import { TokenList } from '@tokenlist-builder/core';
+import { TokenList } from '@0xlist/core';
 
 export default function fetchExternal(sources: string[]) {
   return Promise.all(

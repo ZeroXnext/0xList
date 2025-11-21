@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { Chain, Config, ListPath, SeenKey, TokenList } from '@tokenlist-builder/core';
+import { Chain, Config, ListPath, SeenKey, TokenList } from '@0xlist/core';
 import path from 'node:path';
 import getPaths from './get-paths';
 

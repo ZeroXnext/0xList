@@ -1,4 +1,4 @@
-import { Config } from '@tokenlist-builder/core';
+import { Config } from '@0xlist/core';
 
 export default {
   indexFileName: 'index',

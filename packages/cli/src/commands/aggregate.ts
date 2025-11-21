@@ -6,7 +6,7 @@ import path from 'node:path';
 import { parseGitRemoteUrl } from '@utils';
 import childProcess from 'node:child_process';
 import mergeIndexes from '@helpers/merge-indexes';
-import { Config, ListIndex } from '@tokenlist-builder/core';
+import { Config, ListIndex } from '@0xlist/core';
 import fs from 'node:fs';
 
 // user -> cli -> aggregate -> network_type -> index.json
