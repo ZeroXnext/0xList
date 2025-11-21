@@ -48,12 +48,6 @@ export interface ListIndex {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ChainValue = NonNullable<Config['chainsMapping']> extends Map<any, infer V> ? V : never; // Chain
 
-export interface Plugin {
-  name: string;
-  description: string;
-  url: string;
-}
-
 export interface Config<T = ChainMappingType> {
   verbose: boolean;
   defaultLogoUrl: string;
