@@ -1,11 +1,15 @@
-import {schema as tokenListSchema, TokenList} from '@uniswap/token-lists';
-import {Chain, Config, ListPath, Mutable} from '@types';
+import { schema as tokenListSchema, TokenList } from '@uniswap/token-lists';
+import { Chain, Config, ListPath, Mutable } from '@types';
 import createList from './create-list';
-import {slugify} from '@utils';
+import { slugify } from '@utils';
 
 const mapping = new Map<ListPath, TokenList>([]);
 const seen = new Set<string>();
-export default function classify(tokenList: TokenList, config: Config, offset = -1): Map<ListPath, TokenList> {
+export default function classify(
+  tokenList: TokenList,
+  config: Config,
+  offset = -1,
+): Map<ListPath, TokenList> {
   const {
     allowedNetworkTypes,
     allowedChains,
@@ -16,19 +20,21 @@ export default function classify(tokenList: TokenList, config: Config, offset = 
     outputDir,
     defaultListVersion,
     defaultTokenListName,
-    chainsMapping
+    chainsMapping,
   } = config;
   for (let i = Math.max(offset, 0); i < tokenList.tokens.length; i++) {
-
     const token = tokenList.tokens[i];
     // 1. Ignore if token is invalid
-    if (!token.chainId ||
-        !token.address ||
-        token.logoURI === null ||
-        token.name.length > tokenListSchema.definitions.TokenInfo.properties.name.maxLength ||
-        token.symbol.length > tokenListSchema.definitions.TokenInfo.properties.symbol.maxLength ||
-        !Object.hasOwn(token, 'decimals') ||
-        !new RegExp(tokenListSchema.definitions.TokenInfo.properties.symbol.anyOf[1].pattern as string).test(token.symbol)
+    if (
+      !token.chainId ||
+      !token.address ||
+      token.logoURI === null ||
+      token.name.length > tokenListSchema.definitions.TokenInfo.properties.name.maxLength ||
+      token.symbol.length > tokenListSchema.definitions.TokenInfo.properties.symbol.maxLength ||
+      !Object.hasOwn(token, 'decimals') ||
+      !new RegExp(
+        tokenListSchema.definitions.TokenInfo.properties.symbol.anyOf[1].pattern as string,
+      ).test(token.symbol)
     ) {
       continue;
     }
@@ -44,29 +50,29 @@ export default function classify(tokenList: TokenList, config: Config, offset = 
     }
 
     const isChainAllowed =
-        (!allowedNetworkTypes.length || allowedNetworkTypes.includes(chainInfo.type)) &&
-        (!allowedChains.length || allowedChains.includes(chainInfo.name));
+      (!allowedNetworkTypes.length || allowedNetworkTypes.includes(chainInfo.type)) &&
+      (!allowedChains.length || allowedChains.includes(chainInfo.name));
 
     const isChainDenied =
-        disallowedNetworkTypes.includes(chainInfo.type) ||
-        disallowedChains.includes(chainInfo.name);
+      disallowedNetworkTypes.includes(chainInfo.type) || disallowedChains.includes(chainInfo.name);
 
     const isTokenAllowed =
-        (!allowedTokens.length || allowedTokens.includes(token.address as `0x${string}`));
+      !allowedTokens.length || allowedTokens.includes(token.address as `0x${string}`);
 
-    const isTokenDenied =
-        disallowedTokens.includes(token.address as `0x${string}`);
+    const isTokenDenied = disallowedTokens.includes(token.address as `0x${string}`);
 
     if (!isChainAllowed || isChainDenied || !isTokenAllowed || isTokenDenied) {
       continue;
     }
 
-
     // 4. Check if there is an offset available, if so modify token list name and listPath
     let tokenListName: string = tokenList.name;
 
     // 5. Check and normalize list name
-    if (tokenListName.length > tokenListSchema.properties.name.maxLength || tokenList.name === config.indexFileName) {
+    if (
+      tokenListName.length > tokenListSchema.properties.name.maxLength ||
+      tokenList.name === config.indexFileName
+    ) {
       tokenListName = defaultTokenListName;
     }
 
@@ -83,13 +89,19 @@ export default function classify(tokenList: TokenList, config: Config, offset = 
 
     // 7. Check if there is an existing list, otherwise initialize empty tokens
     if (!list) {
-      mapping.set(listPath, createList({
-        name: tokenListName,
-        tags: tokenList.tags,
-        tokens: [],
-        keywords: tokenList.keywords,
-        logoURI: tokenList.logoURI
-      }, defaultListVersion));
+      mapping.set(
+        listPath,
+        createList(
+          {
+            name: tokenListName,
+            tags: tokenList.tags,
+            tokens: [],
+            keywords: tokenList.keywords,
+            logoURI: tokenList.logoURI,
+          },
+          defaultListVersion,
+        ),
+      );
       list = mapping.get(listPath);
     }
 

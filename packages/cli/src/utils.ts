@@ -1,4 +1,7 @@
-export function parseGitRemoteUrl(url: string): { username: string; repo: string } {
+export function parseGitRemoteUrl(url: string): {
+  username: string;
+  repo: string;
+} {
   // Remove trailing whitespace
   url = url.trim();
 
@@ -10,5 +13,5 @@ export function parseGitRemoteUrl(url: string): { username: string; repo: string
   }
 
   const [, username, repo] = match;
-  return {username, repo};
+  return { username, repo };
 }

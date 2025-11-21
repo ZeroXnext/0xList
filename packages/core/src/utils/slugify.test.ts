@@ -1,7 +1,7 @@
 import slugify from './slugify';
 
-describe("utils", () => {
-  describe("slugify", () => {
+describe('utils', () => {
+  describe('slugify', () => {
     it('converts spaces to hyphens and lowercases text', () => {
       expect(slugify('Hello World')).toBe('hello-world');
     });

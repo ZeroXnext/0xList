@@ -30,10 +30,11 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
-transition: fade-out
----
+
+## transition: fade-out
 
 # **0xList/core**
+
 <div class="grid grid-cols-3 gap-4">
 
   <div>
@@ -57,12 +58,12 @@ transition: fade-out
 flowchart >
     input["Input (Config)"]
     setup[Setup]
-    
+
     runtime[Runtime]
 
     loadExternal[External]
     loadOwned[Owned]
-    
+
     lifecycle["Lifecycle"]
 
 

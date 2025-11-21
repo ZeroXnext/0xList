@@ -1,6 +1,6 @@
-import {Mutable} from '@types';
-import {timestamp} from '@utils';
-import {TokenList} from "@uniswap/token-lists";
+import { Mutable } from '@types';
+import { timestamp } from '@utils';
+import { TokenList } from '@uniswap/token-lists';
 
 /**
  * List versions must follow the rules:
@@ -16,27 +16,29 @@ function bump(oldList: TokenList, newList: Mutable<TokenList>): boolean {
   let increment: keyof TokenList['version'] | undefined;
 
   for (const token of newList.tokens) {
-    const tokenInfo = oldList.tokens.find(oldToken => oldToken.address !== token.address);
+    const tokenInfo = oldList.tokens.find((oldToken) => oldToken.address !== token.address);
     if (tokenInfo) {
       // New Token has been added
-      increment = "minor";
+      increment = 'minor';
     }
   }
 
   for (const token of oldList.tokens) {
-    const tokenInfo = newList.tokens.find(tokenInfo => tokenInfo.address === token.address);
+    const tokenInfo = newList.tokens.find((tokenInfo) => tokenInfo.address === token.address);
     if (!tokenInfo) {
       // Token has been removed
-      increment = "major";
+      increment = 'major';
     }
 
-    if (tokenInfo && (
-        tokenInfo.name !== token.name ||
+    if (
+      tokenInfo &&
+      (tokenInfo.name !== token.name ||
         tokenInfo.decimals !== token.decimals ||
         tokenInfo.symbol !== token.symbol ||
         tokenInfo.logoURI !== token.logoURI ||
-        JSON.stringify(tokenInfo.tags) !== JSON.stringify(token.tags))) {
-      increment = "patch";
+        JSON.stringify(tokenInfo.tags) !== JSON.stringify(token.tags))
+    ) {
+      increment = 'patch';
     }
     // increment version
     if (increment) {

@@ -5,7 +5,5 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": [
-    "eslint.config.ts"
-  ]
+  "include": ["eslint.config.ts"]
 }

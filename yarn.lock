@@ -10279,6 +10279,7 @@ __metadata:
     globals: "npm:^16.5.0"
     husky: "npm:^8.0.0"
     jest: "npm:^30.2.0"
+    prettier: "npm:^3.6.2"
     ts-jest: "npm:^29.4.5"
     ts-node: "npm:^10.9.2"
     turbo: "npm:^2.6.0"

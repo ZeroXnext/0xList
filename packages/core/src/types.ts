@@ -1,11 +1,11 @@
 import type { TokenList, Version } from '@uniswap/token-lists';
 
-export type Key = string | Buffer
+export type Key = string | Buffer;
 
 export interface TokenListIndex {
   timestamp: string;
-  version: TokenList['version'],
-  lists: (Omit<TokenList, "tokens"> & Record<"contents", string>)[],
+  version: TokenList['version'];
+  lists: (Omit<TokenList, 'tokens'> & Record<'contents', string>)[];
 }
 
 export { TokenList };
@@ -16,7 +16,7 @@ export type Mutable<T> = {
 
 export type GHUserRawContentURL = `https://raw.githubusercontent.com`;
 
-export type IndexName = "index" | string
+export type IndexName = 'index' | string;
 
 // <base>/<network_type>/<chain_name>/<list-name>.json
 export type ListPath = `${string}/${string}/${string}/${string}.json`;
@@ -38,11 +38,11 @@ export interface Chain {
   type: string;
 }
 
-export type ChainMappingType = Map<number, Chain>
+export type ChainMappingType = Map<number, Chain>;
 
 export interface ListIndex {
   timestamp: string; // representing last updated at
-  lists: Array<Omit<TokenList, 'tokens'> & Record<"contents", ListURL>>;
+  lists: Array<Omit<TokenList, 'tokens'> & Record<'contents', ListURL>>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

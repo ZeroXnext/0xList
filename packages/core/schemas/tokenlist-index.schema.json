@@ -18,9 +18,7 @@
           "minLength": 1,
           "maxLength": 30,
           "pattern": "^[\\w ]+$",
-          "examples": [
-            "My Token List"
-          ]
+          "examples": ["My Token List"]
         },
         "contents": {
           "type": "string",
@@ -41,11 +39,7 @@
             "minLength": 1,
             "maxLength": 20,
             "pattern": "^[\\w ]+$",
-            "examples": [
-              "compound",
-              "lending",
-              "personal tokens"
-            ]
+            "examples": ["compound", "lending", "personal tokens"]
           },
           "maxItems": 20,
           "uniqueItems": true
@@ -57,12 +51,7 @@
           }
         }
       },
-      "required": [
-        "contents",
-        "timestamp",
-        "version",
-        "name"
-      ]
+      "required": ["contents", "timestamp", "version", "name"]
     },
     "Version": {
       "$ref": "https://uniswap.org/tokenlist.schema.json#/definitions/Version"
@@ -93,9 +82,5 @@
     }
   },
   "additionalProperties": false,
-  "required": [
-    "version",
-    "timestamp",
-    "lists"
-  ]
+  "required": ["version", "timestamp", "lists"]
 }

@@ -14,22 +14,11 @@
     "declaration": true,
     "declarationMap": true,
     "paths": {
-      "@utils": [
-        "utils/index.ts"
-      ],
-      "@types": [
-        "types.ts"
-      ],
-      "@constants": [
-        "constants.ts"
-      ],
-      "@helpers": [
-        "helpers/index.ts"
-      ]
+      "@utils": ["utils/index.ts"],
+      "@types": ["types.ts"],
+      "@constants": ["constants.ts"],
+      "@helpers": ["helpers/index.ts"]
     }
   },
-  "include": [
-    "./schemas/*.json",
-    "./src/**/*"
-  ]
+  "include": ["./schemas/*.json", "./src/**/*"]
 }

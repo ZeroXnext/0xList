@@ -1,12 +1,23 @@
-import {ListIndex, ListPath, ListURL, Mutable, timestamp, TokenList} from "@tokenlist-builder/core";
+import {
+  ListIndex,
+  ListPath,
+  ListURL,
+  Mutable,
+  timestamp,
+  TokenList,
+} from '@tokenlist-builder/core';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export default function buildIndex(remoteBaseUrl: string, indexFullPath: string, listMap: Map<ListPath, Mutable<Omit<TokenList, "tokens"> & Partial<Pick<TokenList, "tokens">>>>) {
+export default function buildIndex(
+  remoteBaseUrl: string,
+  indexFullPath: string,
+  listMap: Map<ListPath, Mutable<Omit<TokenList, 'tokens'> & Partial<Pick<TokenList, 'tokens'>>>>,
+) {
   // Directory path already exists, just build the index and write to the disk
   const indexData: ListIndex = {
     lists: [],
-    timestamp: timestamp()
+    timestamp: timestamp(),
   };
 
   // Assuming the base is already merged into the listPath
@@ -18,6 +29,8 @@ export default function buildIndex(remoteBaseUrl: string, indexFullPath: string,
       contents: listUrl,
     });
   }
-  fs.writeFileSync(indexFullPath, JSON.stringify(indexData, null, 2), {encoding: "utf8"});
+  fs.writeFileSync(indexFullPath, JSON.stringify(indexData, null, 2), {
+    encoding: 'utf8',
+  });
   return indexData;
 }

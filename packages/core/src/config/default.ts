@@ -1,5 +1,5 @@
-import {Config} from '@types';
-import {supportedChains} from '@helpers';
+import { Config } from '@types';
+import { supportedChains } from '@helpers';
 import {
   DEFAULT_CHAINS,
   DEFAULT_LIST_LOGO_URI,
@@ -7,7 +7,7 @@ import {
   DEFAULT_OUTPUT_DIR,
   DEFAULT_TOKEN_LIST_NAME,
   GITHUB_CONTENT_BASE_URL,
-  SYNC_SOURCES
+  SYNC_SOURCES,
 } from '@constants';
 
 const [allowedNetworkTypes, allowedChains] = supportedChains();
@@ -17,12 +17,12 @@ const defaultConfig: Config = {
   verbose: false,
   defaultListVersion: DEFAULT_LIST_VERSION,
   defaultTokenListName: DEFAULT_TOKEN_LIST_NAME,
-  indexFileName: "index",
+  indexFileName: 'index',
   disallowedNetworkTypes: [],
   disallowedChains: [],
   allowedTokens: [],
   disallowedTokens: [],
-  fileNamePattern: "",
+  fileNamePattern: '',
   chainsMapping: DEFAULT_CHAINS,
   allowedChains,
   allowedNetworkTypes,

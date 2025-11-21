@@ -13,12 +13,6 @@
       "@helpers/*": ["src/helpers/*"]
     }
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src/**/*.ts",
-    "0xlist.config.ts",
-    "bin/*.ts"
-  ],
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts", "0xlist.config.ts", "bin/*.ts"]
 }

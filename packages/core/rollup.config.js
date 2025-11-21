@@ -1,29 +1,38 @@
-import {nodeResolve} from '@rollup/plugin-node-resolve';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
 import path from 'path';
-import {fileURLToPath} from "url"
-import esbuild from 'rollup-plugin-esbuild'
+import { fileURLToPath } from 'url';
+import esbuild from 'rollup-plugin-esbuild';
 import json from '@rollup/plugin-json';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
-  input: "src/index.ts",
+  input: 'src/index.ts',
   output: [
     {
       file: 'dist/index.esm.js',
-      format: 'esm'
-    }
+      format: 'esm',
+    },
   ],
   plugins: [
     json(),
     alias({
       entries: [
-        {find: '@utils', replacement: path.resolve(__dirname, 'src/utils/index.ts')},
-        {find: '@helpers', replacement: path.resolve(__dirname, 'src/helpers/index.ts')},
-        {find: '@constants', replacement: path.resolve(__dirname, 'src/constants.ts')},
-      ]
+        {
+          find: '@utils',
+          replacement: path.resolve(__dirname, 'src/utils/index.ts'),
+        },
+        {
+          find: '@helpers',
+          replacement: path.resolve(__dirname, 'src/helpers/index.ts'),
+        },
+        {
+          find: '@constants',
+          replacement: path.resolve(__dirname, 'src/constants.ts'),
+        },
+      ],
     }),
     esbuild({
       // All options are optional
@@ -46,9 +55,8 @@ export default {
         '.js': 'jsx',
       },
     }),
-    nodeResolve({browser: true}),
-
+    nodeResolve({ browser: true }),
   ],
-  ignore: ["src/**/*.test.ts"],
-  external: ['ajv'] // don't bundle AJV;
+  ignore: ['src/**/*.test.ts'],
+  external: ['ajv'], // don't bundle AJV;
 };
