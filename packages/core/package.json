@@ -1,5 +1,5 @@
 {
-  "name": "@tokenlist-builder/core",
+  "name": "@0xlist/core",
   "private": true,
   "type": "module",
   "main": "dist/index.esm.js",

@@ -1,13 +1,13 @@
 {
-  "name": "tokenlist-builder",
+  "name": "0xlist",
   "packageManager": "yarn@4.11.0",
   "workspaces": [
     "packages/*",
     "presentation/*"
   ],
   "scripts": {
-    "core": "yarn workspace @tokenlist-builder/core",
-    "cli": "yarn workspace @tokenlist-builder/cli",
+    "core": "yarn workspace @0xlist/core",
+    "cli": "yarn workspace @0xlist/cli",
     "lint": "eslint . --fix && prettier . --write",
     "build": "turbo build",
     "test": "turbo test",

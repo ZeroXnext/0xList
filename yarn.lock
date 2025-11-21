@@ -16,6 +16,60 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"0xlist@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "0xlist@workspace:."
+  dependencies:
+    "@eslint/js": "npm:^9.39.1"
+    "@types/jest": "npm:^30.0.0"
+    commitizen: "npm:^4.3.1"
+    cz-conventional-changelog: "npm:^3.3.0"
+    eslint: "npm:^9.39.1"
+    eslint-config-prettier: "npm:^10.1.8"
+    globals: "npm:^16.5.0"
+    husky: "npm:^8.0.0"
+    jest: "npm:^30.2.0"
+    prettier: "npm:^3.6.2"
+    ts-jest: "npm:^29.4.5"
+    ts-node: "npm:^10.9.2"
+    turbo: "npm:^2.6.0"
+    typescript-eslint: "npm:^8.47.0"
+  languageName: unknown
+  linkType: soft
+
+"@0xlist/cli@workspace:packages/cli":
+  version: 0.0.0-use.local
+  resolution: "@0xlist/cli@workspace:packages/cli"
+  dependencies:
+    "@0xlist/core": "workspace:^"
+    "@types/node": "npm:^24.10.0"
+    "@types/yargs": "npm:^17.0.34"
+    ajv: "npm:^8.17.1"
+    ajv-formats: "npm:^3.0.1"
+    tsx: "npm:^4.20.6"
+    yargs: "npm:^18.0.0"
+  languageName: unknown
+  linkType: soft
+
+"@0xlist/core@workspace:^, @0xlist/core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@0xlist/core@workspace:packages/core"
+  dependencies:
+    "@rollup/plugin-alias": "npm:^6.0.0"
+    "@rollup/plugin-commonjs": "npm:^29.0.0"
+    "@rollup/plugin-json": "npm:^6.1.0"
+    "@rollup/plugin-node-resolve": "npm:^16.0.3"
+    "@uniswap/token-lists": "npm:1.0.0-beta.32"
+    ajv: "npm:^8.17.1"
+    ajv-formats: "npm:^3.0.1"
+    rollup: "npm:^4.53.2"
+    rollup-plugin-dts: "npm:^6.2.3"
+    rollup-plugin-esbuild: "npm:^6.2.1"
+    tslib: "npm:^2.8.1"
+    typescript: "npm:^5.9.3"
+  languageName: unknown
+  linkType: soft
+
 "@antfu/install-pkg@npm:^1.1.0":
   version: 1.1.0
   resolution: "@antfu/install-pkg@npm:1.1.0"
@@ -2249,39 +2303,6 @@ __metadata:
   checksum: 10c0/28b70a8842618e109b6e377567f813e626c052117240676c37ed6fd8e581ee6081b9a0d55f50e9f3412090cc948403bb8f5590e9b808dd495815b5fed5275f8f
   languageName: node
   linkType: hard
-
-"@tokenlist-builder/cli@workspace:packages/cli":
-  version: 0.0.0-use.local
-  resolution: "@tokenlist-builder/cli@workspace:packages/cli"
-  dependencies:
-    "@tokenlist-builder/core": "workspace:^"
-    "@types/node": "npm:^24.10.0"
-    "@types/yargs": "npm:^17.0.34"
-    ajv: "npm:^8.17.1"
-    ajv-formats: "npm:^3.0.1"
-    tsx: "npm:^4.20.6"
-    yargs: "npm:^18.0.0"
-  languageName: unknown
-  linkType: soft
-
-"@tokenlist-builder/core@workspace:^, @tokenlist-builder/core@workspace:packages/core":
-  version: 0.0.0-use.local
-  resolution: "@tokenlist-builder/core@workspace:packages/core"
-  dependencies:
-    "@rollup/plugin-alias": "npm:^6.0.0"
-    "@rollup/plugin-commonjs": "npm:^29.0.0"
-    "@rollup/plugin-json": "npm:^6.1.0"
-    "@rollup/plugin-node-resolve": "npm:^16.0.3"
-    "@uniswap/token-lists": "npm:1.0.0-beta.32"
-    ajv: "npm:^8.17.1"
-    ajv-formats: "npm:^3.0.1"
-    rollup: "npm:^4.53.2"
-    rollup-plugin-dts: "npm:^6.2.3"
-    rollup-plugin-esbuild: "npm:^6.2.1"
-    tslib: "npm:^2.8.1"
-    typescript: "npm:^5.9.3"
-  languageName: unknown
-  linkType: soft
 
 "@tsconfig/node10@npm:^1.0.7":
   version: 1.0.12
@@ -10265,27 +10286,6 @@ __metadata:
   checksum: 10c0/487988b0a19c654ff3e1961b87f471702e708fa8a8dd02a298ef16da7206692e8552a0250e8b3e8759270f62e9d8314616f6da274734d3b558b1fc7b7724e892
   languageName: node
   linkType: hard
-
-"tokenlist-builder@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "tokenlist-builder@workspace:."
-  dependencies:
-    "@eslint/js": "npm:^9.39.1"
-    "@types/jest": "npm:^30.0.0"
-    commitizen: "npm:^4.3.1"
-    cz-conventional-changelog: "npm:^3.3.0"
-    eslint: "npm:^9.39.1"
-    eslint-config-prettier: "npm:^10.1.8"
-    globals: "npm:^16.5.0"
-    husky: "npm:^8.0.0"
-    jest: "npm:^30.2.0"
-    prettier: "npm:^3.6.2"
-    ts-jest: "npm:^29.4.5"
-    ts-node: "npm:^10.9.2"
-    turbo: "npm:^2.6.0"
-    typescript-eslint: "npm:^8.47.0"
-  languageName: unknown
-  linkType: soft
 
 "totalist@npm:^3.0.0":
   version: 3.0.1
