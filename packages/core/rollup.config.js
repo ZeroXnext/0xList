@@ -30,7 +30,7 @@ export default {
       include: /\.[jt]sx?$/, // default, inferred from `loaders` option
       exclude: /node_modules/, // default
       sourceMap: true, // default
-      minify: process.env.NODE_ENV === 'production',
+      minify: import.meta.env?.NODE_ENV === 'production',
       target: 'esnext', // default, or 'es20XX', 'esnext'
       jsx: 'transform', // default, or 'preserve'
       define: {
@@ -49,5 +49,6 @@ export default {
     nodeResolve({browser: true}),
 
   ],
+  ignore: ["src/**/*.test.ts"],
   external: ['ajv'] // don't bundle AJV;
 };
