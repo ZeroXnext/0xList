@@ -1,6 +1,6 @@
-import path from "node:path";
-import fs from "node:fs";
-import { Config } from "@tokenlist-builder/core";
+import path from 'node:path';
+import fs from 'node:fs';
+import { Config } from '@tokenlist-builder/core';
 
 export default function forEachIndex(
   cb: (dirPath: string, indexPath: string) => void,

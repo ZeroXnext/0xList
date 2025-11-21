@@ -1,7 +1,7 @@
-import { schema as tokenListSchema, TokenList } from "@uniswap/token-lists";
-import { Chain, Config, ListPath, Mutable } from "@types";
-import createList from "./create-list";
-import { slugify } from "@utils";
+import { schema as tokenListSchema, TokenList } from '@uniswap/token-lists';
+import { Chain, Config, ListPath, Mutable } from '@types';
+import createList from './create-list';
+import { slugify } from '@utils';
 
 const mapping = new Map<ListPath, TokenList>([]);
 const seen = new Set<string>();
@@ -31,7 +31,7 @@ export default function classify(
       token.logoURI === null ||
       token.name.length > tokenListSchema.definitions.TokenInfo.properties.name.maxLength ||
       token.symbol.length > tokenListSchema.definitions.TokenInfo.properties.symbol.maxLength ||
-      !Object.hasOwn(token, "decimals") ||
+      !Object.hasOwn(token, 'decimals') ||
       !new RegExp(
         tokenListSchema.definitions.TokenInfo.properties.symbol.anyOf[1].pattern as string,
       ).test(token.symbol)

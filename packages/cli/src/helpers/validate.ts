@@ -1,6 +1,6 @@
-import Ajv from "ajv";
-import { TokenList, tokenListSchema } from "@tokenlist-builder/core";
-import addFormats from "ajv-formats";
+import Ajv from 'ajv';
+import { TokenList, tokenListSchema } from '@tokenlist-builder/core';
+import addFormats from 'ajv-formats';
 
 export default function validate(tokenList: TokenList) {
   const ajv = new Ajv();
@@ -9,6 +9,6 @@ export default function validate(tokenList: TokenList) {
 
   return [
     validator.validate(tokenListSchema, tokenList),
-    validator.errors?.map((item) => `${item.instancePath}:${item.message}`)?.join(",\n"),
+    validator.errors?.map((item) => `${item.instancePath}:${item.message}`)?.join(',\n'),
   ];
 }

@@ -1,11 +1,11 @@
-import { classify, Config } from "@tokenlist-builder/core";
-import { Entry } from "@types";
-import fetchExternal from "@helpers/fetch-external";
-import output from "@helpers/output";
-import validate from "@helpers/validate";
+import { classify, Config } from '@tokenlist-builder/core';
+import { Entry } from '@types';
+import fetchExternal from '@helpers/fetch-external';
+import output from '@helpers/output';
+import validate from '@helpers/validate';
 
 function addGenerateCommand(entry: Entry, config: Config) {
-  entry.command("sync", "It syncs with remote token list", async () => {
+  entry.command('sync', 'It syncs with remote token list', async () => {
     const lists = await fetchExternal(config.syncSources);
     for (const list of lists) {
       if (!list) {

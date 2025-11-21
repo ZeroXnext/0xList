@@ -1,4 +1,4 @@
-import { DEFAULT_CHAINS } from "@constants";
+import { DEFAULT_CHAINS } from '@constants';
 
 export default function supportedChains(mapping = DEFAULT_CHAINS) {
   const chains = new Set<string>();

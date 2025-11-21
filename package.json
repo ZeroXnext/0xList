@@ -8,7 +8,7 @@
   "scripts": {
     "core": "yarn workspace @tokenlist-builder/core",
     "cli": "yarn workspace @tokenlist-builder/cli",
-    "lint": "eslint . --fix",
+    "lint": "eslint . --fix && prettier . --write",
     "build": "turbo build",
     "test": "turbo test",
     "prepare": "husky install"
