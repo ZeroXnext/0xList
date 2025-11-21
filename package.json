@@ -8,6 +8,7 @@
   "scripts": {
     "core": "yarn workspace @tokenlist-builder/core",
     "cli": "yarn workspace @tokenlist-builder/cli",
+    "lint": "eslint . --fix",
     "build": "turbo build",
     "test": "turbo test"
   },
