@@ -1,4 +1,4 @@
-import {TokenList, Version} from '@uniswap/token-lists';
+import type { TokenList, Version } from '@uniswap/token-lists';
 
 export type Key = string | Buffer
 
@@ -8,7 +8,7 @@ export interface TokenListIndex {
   lists: (Omit<TokenList, "tokens"> & Record<"contents", string>)[],
 }
 
-export {TokenList};
+export { TokenList };
 
 export type Mutable<T> = {
   -readonly [P in keyof T]: T[P];
