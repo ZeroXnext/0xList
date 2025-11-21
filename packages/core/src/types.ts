@@ -50,6 +50,7 @@ type ChainValue = NonNullable<Config['chainsMapping']> extends Map<any, infer V>
 export interface Plugin {
   name: string;
   description: string;
+  url: string;
 }
 
 export interface Config<T = ChainMappingType> {
