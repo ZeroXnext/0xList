@@ -1,7 +1,7 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import schema from "../schemas/tokenlist-index.schema.json";
-import {TokenListIndex} from '../src';
+import {TokenListIndex} from '@types';
 import {schema as tokenListSchema} from '@uniswap/token-lists';
 
 const ajv = new Ajv({allErrors: true});
