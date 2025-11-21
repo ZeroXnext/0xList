@@ -1,4 +1,4 @@
-import { ListIndex, timestamp } from '@tokenlist-builder/core';
+import { ListIndex, timestamp } from "@tokenlist-builder/core";
 
 /**
  *
@@ -9,7 +9,7 @@ export default function mergeIndexes(indexes: ListIndex[], basePath: string) {
   const mapping = new Map<string, ListIndex>();
   for (const { lists } of indexes) {
     for (const list of lists) {
-      const [, network_type] = list.contents.trim().replaceAll(basePath, '').trim().split('/');
+      const [, network_type] = list.contents.trim().replaceAll(basePath, "").trim().split("/");
       let cached = mapping.get(network_type);
       if (!cached) {
         mapping.set(network_type, { timestamp: timestamp(), lists: [] });

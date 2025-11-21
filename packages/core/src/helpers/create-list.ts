@@ -1,15 +1,15 @@
-import { DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME } from '@constants';
-import { TokenList } from '@types';
+import { DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME } from "@constants";
+import { TokenList } from "@types";
 
 function createList(
-  { name, logoURI, tags, keywords, tokens }: Omit<TokenList, 'version' | 'timestamp'> = {
+  { name, logoURI, tags, keywords, tokens }: Omit<TokenList, "version" | "timestamp"> = {
     name: DEFAULT_TOKEN_LIST_NAME,
     logoURI: DEFAULT_LIST_LOGO_URI,
     tags: {},
     keywords: [],
     tokens: [],
   },
-  version: TokenList['version'] = DEFAULT_LIST_VERSION,
+  version: TokenList["version"] = DEFAULT_LIST_VERSION,
 ): TokenList {
   return {
     name,

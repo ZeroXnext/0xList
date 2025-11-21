@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import util from 'util';
-import chalk from 'chalk';
+import fs from "fs";
+import path from "path";
+import util from "util";
+import chalk from "chalk";
 
-export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+export type LogLevel = "debug" | "info" | "warn" | "error";
 
 interface LoggerOptions {
   level?: LogLevel; // Minimum level to log
@@ -24,12 +24,12 @@ export class Logger {
   private logFilePath?: string;
 
   constructor(options: LoggerOptions = {}) {
-    this.level = options.level ?? 'debug';
+    this.level = options.level ?? "debug";
     this.logToFile = options.logToFile ?? false;
     this.logFilePath = options.logFilePath;
 
     if (this.logToFile && !this.logFilePath) {
-      this.logFilePath = path.join(process.cwd(), 'app.log');
+      this.logFilePath = path.join(process.cwd(), "app.log");
     }
   }
 
@@ -37,8 +37,8 @@ export class Logger {
   private formatMessage(level: LogLevel, message: any[]) {
     const timestamp = new Date().toISOString();
     const formatted = message
-      .map((m) => (typeof m === 'string' ? m : util.inspect(m, { depth: null })))
-      .join(' ');
+      .map((m) => (typeof m === "string" ? m : util.inspect(m, { depth: null })))
+      .join(" ");
     return `[${timestamp}] [${level.toUpperCase()}] ${formatted}`;
   }
 
@@ -50,40 +50,40 @@ export class Logger {
 
     // Color output for console
     switch (level) {
-      case 'debug':
+      case "debug":
         console.log(chalk.gray(formatted));
         break;
-      case 'info':
+      case "info":
         console.log(chalk.blue(formatted));
         break;
-      case 'warn':
+      case "warn":
         console.warn(chalk.yellow(formatted));
         break;
-      case 'error':
+      case "error":
         console.error(chalk.red(formatted));
         break;
     }
 
     // Optional file logging
     if (this.logToFile && this.logFilePath) {
-      fs.appendFileSync(this.logFilePath, formatted + '\n');
+      fs.appendFileSync(this.logFilePath, formatted + "\n");
     }
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   debug(...msg: any[]) {
-    this.write('debug', msg);
+    this.write("debug", msg);
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   info(...msg: any[]) {
-    this.write('info', msg);
+    this.write("info", msg);
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   warn(...msg: any[]) {
-    this.write('warn', msg);
+    this.write("warn", msg);
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error(...msg: any[]) {
-    this.write('error', msg);
+    this.write("error", msg);
   }
 
   // Scoped logger for modules

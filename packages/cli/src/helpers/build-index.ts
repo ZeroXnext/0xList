@@ -5,14 +5,14 @@ import {
   Mutable,
   timestamp,
   TokenList,
-} from '@tokenlist-builder/core';
-import fs from 'node:fs';
-import path from 'node:path';
+} from "@tokenlist-builder/core";
+import fs from "node:fs";
+import path from "node:path";
 
 export default function buildIndex(
   remoteBaseUrl: string,
   indexFullPath: string,
-  listMap: Map<ListPath, Mutable<Omit<TokenList, 'tokens'> & Partial<Pick<TokenList, 'tokens'>>>>,
+  listMap: Map<ListPath, Mutable<Omit<TokenList, "tokens"> & Partial<Pick<TokenList, "tokens">>>>,
 ) {
   // Directory path already exists, just build the index and write to the disk
   const indexData: ListIndex = {
@@ -30,7 +30,7 @@ export default function buildIndex(
     });
   }
   fs.writeFileSync(indexFullPath, JSON.stringify(indexData, null, 2), {
-    encoding: 'utf8',
+    encoding: "utf8",
   });
   return indexData;
 }

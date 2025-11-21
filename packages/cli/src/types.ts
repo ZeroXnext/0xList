@@ -1,3 +1,3 @@
-import { entry } from './index';
+import { entry } from "./index";
 
 export type Entry = typeof entry;

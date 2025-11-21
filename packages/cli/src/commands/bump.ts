@@ -1,19 +1,19 @@
-import { Entry } from '@types';
-import * as childProcess from 'node:child_process';
-import load from '@helpers/load';
-import { bump, Config, TokenList } from '@tokenlist-builder/core';
-import output from '@helpers/output';
-import { parseGitRemoteUrl } from '@utils';
-import path from 'node:path';
+import { Entry } from "@types";
+import * as childProcess from "node:child_process";
+import load from "@helpers/load";
+import { bump, Config, TokenList } from "@tokenlist-builder/core";
+import output from "@helpers/output";
+import { parseGitRemoteUrl } from "@utils";
+import path from "node:path";
 
 function addBumpCommand(entry: Entry, config: Config): void {
   entry.command(
-    'bump',
-    'It auto-updates the version of the token list, according to rules',
+    "bump",
+    "It auto-updates the version of the token list, according to rules",
     () => {},
     async () => {
-      const stderr = childProcess.execSync('git remote get-url origin', {
-        encoding: 'utf8',
+      const stderr = childProcess.execSync("git remote get-url origin", {
+        encoding: "utf8",
       });
       const repo = parseGitRemoteUrl(stderr);
       const baseUrl = new URL(config.contentBaseURL);
