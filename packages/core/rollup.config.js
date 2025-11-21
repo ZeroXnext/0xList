@@ -1,27 +1,53 @@
-import typescript from '@rollup/plugin-typescript';
-import json from '@rollup/plugin-json';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
+import alias from '@rollup/plugin-alias';
+import path from 'path';
+import {fileURLToPath} from "url"
+import esbuild from 'rollup-plugin-esbuild'
+import json from '@rollup/plugin-json';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default {
-  input: 'src/index.ts', // entry point of your package
+  input: "src/index.ts",
   output: [
     {
-      file: 'dist/core.cjs.js',
-      format: 'cjs',   // CommonJS for Node
-      sourcemap: true
-    },
-    {
-      file: 'dist/core.esm.js',
-      format: 'esm',   // ESM for modern bundlers & browsers
-      sourcemap: true
-    },
+      file: 'dist/index.esm.js',
+      format: 'esm'
+    }
   ],
   plugins: [
-    nodeResolve({browser: true}), // resolve modules for browser
-    commonjs(),                     // convert CJS to ESM
-    json(),                         // import JSON schemas
-    typescript({tsconfig: './tsconfig.build.json'}) // transpile TS
+    json(),
+    alias({
+      entries: [
+        {find: '@utils', replacement: path.resolve(__dirname, 'src/utils/index.ts')},
+        {find: '@helpers', replacement: path.resolve(__dirname, 'src/helpers/index.ts')},
+        {find: '@constants', replacement: path.resolve(__dirname, 'src/constants.ts')},
+      ]
+    }),
+    esbuild({
+      // All options are optional
+      include: /\.[jt]sx?$/, // default, inferred from `loaders` option
+      exclude: /node_modules/, // default
+      sourceMap: true, // default
+      minify: process.env.NODE_ENV === 'production',
+      target: 'esnext', // default, or 'es20XX', 'esnext'
+      jsx: 'transform', // default, or 'preserve'
+      define: {
+        __VERSION__: '"x.y.z"',
+      },
+      tsconfig: 'tsconfig.json', // default
+      // Add extra loaders
+      loaders: {
+        // Add .json files support
+        // require @rollup/plugin-commonjs
+        '.json': 'json',
+        // Enable JSX in .js files too
+        '.js': 'jsx',
+      },
+    }),
+    nodeResolve({browser: true}),
+
   ],
   external: ['ajv'] // don't bundle AJV;
 };
