@@ -22,6 +22,7 @@ interface Config {
   version: Version;
   schema: JSONSchema;
   allowedOperations: PathsOperations;
+  state: StateConfig;
 }
 ```
 
@@ -32,6 +33,7 @@ interface Config {
 1. `version` is REQUIRED and MUST be the [Version Interface](#22-version-interface)
 2. `schema` is REQUIRED and MUST be a valid JSON Schema
 3. `allowedOperations`: is REQUIRED and MUST be a valid [PathsOperations](#23-paths-operations) object
+4. `state` is REQUIRED and MUST be one of the supported [state origins](#24-state-config)
 
 ## 2.2. Version Interface
 
@@ -87,6 +89,46 @@ class PathsOperationsMap {
    2.1 `Object` (Array or literal) type SHOULD be able to have all `OPERATIONS`;
    2.2 `String` | `Number` type MAY be only `OPERATIONS.read`, `OPERATIONS.update`;
 4. `init()` it is REQUIRED and it SHOULD digest the provided schema and produce the `paths` property
+
+## 2.4 State Config
+
+```ts
+type StateOrigin = 'local' | 'github' | 'blockchain';
+
+interface StateConfig {
+  origin: StateOrigin;
+}
+```
+
+**Requirements:**
+
+1. `StateConfig.origin` is REQUIRED and MUST be one of the values of `StateOrigin`.
+
+## 2.5 State Manager
+
+```ts
+type StateRoots = {
+  listRoot: MerkleRoot;
+  runnersRoot: MerkleRoot;
+  pluginPermissionRoot: MerkleRoot;
+};
+
+type StateNodes = {
+  list: Map<Hash, ListNode>;
+  runners: Map<Hash, RunnerNode>;
+  pluginPermissions: Map<Hash, PluginPermissionsNode>;
+};
+
+class StateManager {
+  roots: StateRoots;
+  nodes: StateNodes;
+
+  async sync(): void;
+  verify(hash: Hash): boolean;
+}
+```
+
+## 2.6 Global types: Hash, MerkleRoot
 
 <!--
 ## 2.4. Cryptography lib interface
