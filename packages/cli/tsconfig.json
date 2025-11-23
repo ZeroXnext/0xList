@@ -5,12 +5,10 @@
     "composite": true,
     "module": "NodeNext",
     "target": "ES2023",
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "paths": {
-      "@utils": ["src/utils.ts"],
-      "@types": ["src/types.ts"],
-      "@helpers/*": ["src/helpers/*"]
+      "@utils": ["./src/utils.ts"],
+      "@types": ["./src/types.ts"],
+      "@helpers/*": ["./src/helpers/*"]
     }
   },
   "exclude": ["node_modules"],
