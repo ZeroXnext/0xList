@@ -44,3 +44,31 @@ export const SYNC_SOURCES = [
   'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link',
   'https://defiprime.com/defiprime.tokenlist.json',
 ];
+
+export const OP_SCOPE = ['name', 'tokens', 'tags.*.name', 'description'];
+
+export const OP_PATHS = ['*.name', '*.tokens', '*.tags'] as const;
+
+export const OP_METHODS = [] as const;
+
+export const OP_BASIC = ['read', 'update'] as const;
+
+export const OP_LIST = ['create', 'remove'] as const;
+
+export interface BaseMessage {
+  exp: number;
+}
+
+export interface PluginMessage {
+  id: string;
+  timestamp: string;
+}
+
+export interface PermissionTree {
+  [key: string]: true;
+}
+
+export interface RevocationTree {
+  [key: string]: true;
+}
+
