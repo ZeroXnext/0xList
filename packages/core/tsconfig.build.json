@@ -8,17 +8,16 @@
     "noEmit": false,
     "declarationDir": "dist",
     "emitDeclarationOnly": true,
-    "baseUrl": "./src",
     "rootDir": "./src",
     "composite": true,
     "declaration": true,
     "declarationMap": true,
     "paths": {
-      "@utils": ["utils/index.ts"],
-      "@types": ["types.ts"],
-      "@constants": ["constants.ts"],
-      "@config": ["config/index.ts"],
-      "@helpers": ["helpers/index.ts"]
+      "@utils": ["./src/utils/index.ts"],
+      "@types": ["./src/types.ts"],
+      "@constants": ["./src/constants.ts"],
+      "@config": ["./src/config/index.ts"],
+      "@helpers": ["./src/helpers/index.ts"]
     }
   },
   "include": ["./schemas/*.json", "./src/**/*"]
