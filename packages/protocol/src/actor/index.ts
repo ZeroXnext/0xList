@@ -1,8 +1,9 @@
 import { Identity } from '../utils/types';
-import { ActorType } from './types';
+import { ActorRole } from './types';
 
 export class Actor {
   constructor(
+    public role: ActorRole,
     private identity: Identity,
     public type: ActorType,
   ) {}

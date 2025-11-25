@@ -1,7 +1,7 @@
-export const ACTOR_TYPE = {
+export const ACTOR_ROLE = {
   developer: 0,
   plugin: 1,
   consumer: 2,
 } as const;
 
-export type ActorType = (typeof ACTOR_TYPE)[keyof typeof ACTOR_TYPE];
+export type ActorRole = (typeof ACTOR_ROLE)[keyof typeof ACTOR_ROLE];
