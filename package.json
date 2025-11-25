@@ -13,6 +13,7 @@
   "scripts": {
     "core": "yarn workspace @0xlist/core",
     "cli": "yarn workspace @0xlist/cli",
+    "protocol": "yarn workspace @0xlist/protocol",
     "lint": "eslint . --fix",
     "build": "turbo build",
     "test": "turbo test",
