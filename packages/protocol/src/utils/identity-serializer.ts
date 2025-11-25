@@ -7,7 +7,6 @@ import {
   IdentityType,
   DIDResolverIdentityType,
 } from './types';
-import { IHasher } from '@types';
 /**
  * Identity is an object that enables the system to label ownership of a thing
  * using either a PublicKey or Decentralized Identifier (DID)
@@ -18,10 +17,8 @@ import { IHasher } from '@types';
  * 3. Public Key or DID
  */
 export default class IdentitySerializer {
-  constructor(private crypto: IHasher) {}
-
   /** Serialize identity to byte array */
-  serialize(identity: Identity): Uint8Array {
+  static serialize(identity: Identity): Uint8Array {
     const versionByte = identity.protocolVersion & 0xff;
     const typeByte = identity.type & 0xff;
     let schemeBytes: Uint8Array;
@@ -35,10 +32,6 @@ export default class IdentitySerializer {
 
       if (did.resolver) {
         const resolverType = did.resolver.type;
-
-        if (typeof resolverType == 'object') {
-          throw new Error('Invalid');
-        }
 
         const resolverTypeByte = resolverType & 0xff;
         const endpointBytes = new TextEncoder().encode(did.resolver.endpoint);
@@ -83,14 +76,8 @@ export default class IdentitySerializer {
     return serialized;
   }
 
-  /** Hash the identity using injected Cryptography implementation */
-  hash(identity: Identity): Uint8Array {
-    const serialized = this.serialize(identity);
-    return this.crypto.hash(serialized);
-  }
-
   /** Deserialize from byte array back to Identity */
-  deserialize(bytes: Uint8Array): Identity {
+  static deserialize(bytes: Uint8Array): Identity {
     const protocolVersion = bytes[0];
     const type = bytes[1] as IdentityType;
     const schemeBytes = bytes.slice(2);

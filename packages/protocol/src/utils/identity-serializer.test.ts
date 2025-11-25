@@ -1,7 +1,5 @@
-import { EthersWallet } from '../helpers';
-import { SHA256Hasher } from '../helpers/hasher';
 import IdentitySerializer from './identity-serializer';
-import { IDENTITY_TYPE } from './types';
+import { DIDScheme, Identity, IDENTITY_TYPE, ResolverIdentity } from './types';
 
 jest.mock('ethers', () => {
   const original = jest.requireActual('ethers');
@@ -31,21 +29,54 @@ jest.mock('ethers', () => {
   };
 });
 
-describe('Identity Serializer', () => {
-  it('Should be able to serialize and deserialize', () => {
-    const cryptography = new EthersWallet();
-    const hash = new SHA256Hasher();
-    const [publicK] = cryptography.generateKeyPair();
-    const identity = new IdentitySerializer(hash);
-    const input = {
-      protocolVersion: 0,
+describe('IdentitySerializer', () => {
+  test('serializes and deserializes a PublicKey identity', () => {
+    const pkIdentity: Identity = {
+      protocolVersion: 1,
       type: IDENTITY_TYPE.PublicKey,
-      scheme: publicK,
+      scheme: new Uint8Array([1, 2, 3, 4, 5]),
     };
-    const serialized = identity.serialize(input);
-    expect(serialized).not.toBe(undefined);
 
-    const deserialized = identity.deserialize(serialized);
-    expect(deserialized).toEqual(input);
+    const serialized = IdentitySerializer.serialize(pkIdentity);
+    expect(serialized[0]).toBe(pkIdentity.protocolVersion);
+    expect(serialized[1]).toBe(pkIdentity.type);
+
+    const deserialized = IdentitySerializer.deserialize(serialized);
+    expect(deserialized).toEqual(pkIdentity);
+  });
+
+  test('serializes and deserializes a DID identity without resolver', () => {
+    const didIdentity: Identity<DIDScheme> = {
+      protocolVersion: 2,
+      type: IDENTITY_TYPE.DID,
+      scheme: { did: 'did:example:12345' },
+    };
+
+    const serialized = IdentitySerializer.serialize(didIdentity);
+    expect(serialized[0]).toBe(didIdentity.protocolVersion);
+    expect(serialized[1]).toBe(didIdentity.type);
+
+    const deserialized = IdentitySerializer.deserialize(serialized);
+    expect((deserialized.scheme as DIDScheme).did).toBe(didIdentity.scheme.did);
+    expect((deserialized.scheme as DIDScheme).resolver).toBeUndefined();
+  });
+
+  test('serializes and deserializes a DID identity with resolver', () => {
+    const resolver: ResolverIdentity = {
+      type: 1,
+      endpoint: 'https://resolver.example.com',
+      version: 3,
+    };
+    const didIdentity: Identity<DIDScheme> = {
+      protocolVersion: 1,
+      type: IDENTITY_TYPE.DID,
+      scheme: { did: 'did:example:67890', resolver },
+    };
+
+    const serialized = IdentitySerializer.serialize(didIdentity);
+
+    const deserialized = IdentitySerializer.deserialize(serialized) as Identity<DIDScheme>;
+    expect(deserialized.scheme.did).toBe(didIdentity.scheme.did);
+    expect(deserialized.scheme.resolver).toEqual(resolver);
   });
 });

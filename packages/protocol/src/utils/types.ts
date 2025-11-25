@@ -16,10 +16,10 @@ export const IDENTITY_TYPE = {
 
 export type IdentityType = (typeof IDENTITY_TYPE)[keyof typeof IDENTITY_TYPE];
 
-export interface Identity {
+export interface Identity<scheme = PkScheme | DIDScheme> {
   protocolVersion: number;
   type: IdentityType;
-  scheme: PkScheme | DIDScheme;
+  scheme: scheme;
 }
 
 // Supported cryptography schemes
