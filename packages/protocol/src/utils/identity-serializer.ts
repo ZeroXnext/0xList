@@ -7,7 +7,7 @@ import {
   IdentityType,
   DIDResolverIdentityType,
 } from './types';
-import { ICryptography } from '@types';
+import { IHasher } from '@types';
 /**
  * Identity is an object that enables the system to label ownership of a thing
  * using either a PublicKey or Decentralized Identifier (DID)
@@ -18,7 +18,7 @@ import { ICryptography } from '@types';
  * 3. Public Key or DID
  */
 export default class IdentitySerializer {
-  constructor(private crypto: ICryptography) {}
+  constructor(private crypto: IHasher) {}
 
   /** Serialize identity to byte array */
   serialize(identity: Identity): Uint8Array {

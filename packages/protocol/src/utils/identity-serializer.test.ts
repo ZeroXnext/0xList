@@ -1,4 +1,5 @@
 import { EthersWallet } from '../helpers';
+import { SHA256Hasher } from '../helpers/hasher';
 import IdentitySerializer from './identity-serializer';
 import { IDENTITY_TYPE } from './types';
 
@@ -33,8 +34,9 @@ jest.mock('ethers', () => {
 describe('Identity Serializer', () => {
   it('Should work', () => {
     const cryptography = new EthersWallet();
+    const hash = new SHA256Hasher();
     const [publicK] = cryptography.generateKeyPair();
-    const identity = new IdentitySerializer(cryptography);
+    const identity = new IdentitySerializer(hash);
     const input = {
       protocolVersion: 0,
       type: IDENTITY_TYPE.PublicKey,
