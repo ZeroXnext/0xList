@@ -32,7 +32,7 @@ jest.mock('ethers', () => {
 });
 
 describe('Identity Serializer', () => {
-  it('Should work', () => {
+  it('Should be able to serialize and deserialize', () => {
     const cryptography = new EthersWallet();
     const hash = new SHA256Hasher();
     const [publicK] = cryptography.generateKeyPair();
