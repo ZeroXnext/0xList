@@ -1,0 +1,19 @@
+sequenceDiagram
+participant User
+participant Host
+participant Apps
+participant Wallet
+participant Audit
+participant Ledger
+participant Content
+
+User ->> Host: I want to authenticate to host
+Host ->> Wallet: Requests authentication
+Wallet ->> User: User gets prompted with message
+User ->> Host: Receives signature 
+Host ->> Apps: Checks the permissions required (if not already)
+Host ->> Wallet: Requests to sign the permissions
+Wallet ->> User: Receives the sign request prompt
+User ->> Host: Signs and host receives signature
+User ->> Host: I want to list a new token
+Host ->> Apps: 
